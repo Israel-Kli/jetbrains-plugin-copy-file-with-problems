@@ -64,6 +64,47 @@ warnings, and syntax issues as inline comments.
   Download the [latest release](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
+## Development
+
+### Building the Plugin
+
+To build the plugin ZIP file for distribution:
+
+```bash
+mkdir -p build/tmp/buildSearchableOptions && ./gradlew buildPlugin -x buildSearchableOptions
+```
+
+This creates the distributable ZIP at: `build/distributions/intellij-plugin-copy-file-with-problems-1.0.0.zip`
+
+**If you encounter build issues, try a clean build:**
+```bash
+./gradlew clean buildPlugin -x buildSearchableOptions
+```
+
+**Alternative build commands:**
+- `./gradlew build` - Full build with tests
+- `./gradlew buildPlugin` - Full plugin build (may require closing IntelliJ)
+- `./gradlew jar` - Compile only, faster for development
+
+### Testing the Plugin
+
+To run IntelliJ IDEA with the plugin for testing:
+
+```bash
+./gradlew runIde
+```
+
+This launches a sandbox IntelliJ instance with your plugin pre-installed.
+
+### Installation from Source
+
+After building:
+1. Install the ZIP file: <kbd>Settings</kbd> → <kbd>Plugins</kbd> → <kbd>⚙️</kbd> → <kbd>Install Plugin from Disk</kbd>
+2. Select: `build/distributions/intellij-plugin-copy-file-with-problems-1.0.0.zip`
+3. Restart IntelliJ to ensure clean plugin loading
+4. Test both actions:
+   - **Editor**: Select text → right-click → "Copy With Problems"
+   - **Project Tree**: Right-click file → "Copy File with Problems"
 
 ---
 Plugin based on the [IntelliJ Platform Plugin Template][template].

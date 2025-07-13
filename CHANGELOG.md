@@ -10,8 +10,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### 🎉 Initial Release
 
 #### ✨ Added
-- **Copy With Problems** action for selected text in editor
-- **Copy File with Problems** action for entire files in project tree
+- **Copy With Problems** action for selected text in the editor
+- **Copy File with Problems** action for entire files in a project tree
 - Comprehensive error detection system with multiple detection methods:
   - PSI syntax error detection
   - Editor markup highlight analysis
@@ -28,7 +28,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - Special character warnings
 - **Smart file headers:**
   - Selected text: Shows filename only
-  - Full file: Shows relative path from project root
+  - Full file: Shows a relative path from the project root
 - **Context menu integration:**
   - Editor popup menu for selected text
   - Project view popup menu for files
@@ -37,7 +37,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### 🔧 Technical Features
 - Multiple error detection strategies for comprehensive coverage
-- Relative path calculation from project root
+- Relative path calculation from the project root
 - Distinct severity levels (ERROR, WARNING, INFO)
 - Pattern-based validation for common syntax issues
 - Integration with IntelliJ's inspection profile system

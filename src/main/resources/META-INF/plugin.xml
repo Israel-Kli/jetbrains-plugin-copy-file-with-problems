@@ -57,6 +57,7 @@
     
     <depends>com.intellij.modules.platform</depends>
 
+
     <actions>
         <action id="CopyWithProblems"
                 class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithProblemsAction"
@@ -72,8 +73,6 @@
                 description="Copy entire file content with associated errors and warnings as comments"
                 icon="/icons/copyWithProblems.svg">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
-            <add-to-group group-id="EditorTabPopupMenu" anchor="last"/>
-            <add-to-group group-id="ProjectViewPopupMenuSettingsGroup" anchor="last"/>
         </action>
     </actions>
 </idea-plugin>
