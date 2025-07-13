@@ -1,34 +1,55 @@
-# intellij-plugin-copy-file-with-problems
+# Copy File with Problems
 
 ![Build](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
-## Template ToDo list
-- [x] Create a new [IntelliJ Platform Plugin Template][template] project.
-- [ ] Get familiar with the [template documentation][template].
-- [ ] Adjust the [pluginGroup](./gradle.properties) and [pluginName](./gradle.properties), as well as the [id](./src/main/resources/META-INF/plugin.xml) and [sources package](./src/main/kotlin).
-- [ ] Adjust the plugin description in `README` (see [Tips][docs:plugin-description])
-- [ ] Review the [Legal Agreements](https://plugins.jetbrains.com/docs/marketplace/legal-agreements.html?from=IJPluginTemplate).
-- [ ] [Publish a plugin manually](https://plugins.jetbrains.com/docs/intellij/publishing-plugin.html?from=IJPluginTemplate) for the first time.
-- [ ] Set the `MARKETPLACE_ID` in the above README badges. You can obtain it once the plugin is published to JetBrains Marketplace.
-- [ ] Set the [Plugin Signing](https://plugins.jetbrains.com/docs/intellij/plugin-signing.html?from=IJPluginTemplate) related [secrets](https://github.com/JetBrains/intellij-platform-plugin-template#environment-variables).
-- [ ] Set the [Deployment Token](https://plugins.jetbrains.com/docs/marketplace/plugin-upload.html?from=IJPluginTemplate).
-- [ ] Click the <kbd>Watch</kbd> button on the top of the [IntelliJ Platform Plugin Template][template] to be notified about releases containing new features and fixes.
+## 🔍 Copy Code with Errors & Warnings Inline
+
+Never lose context when sharing code snippets or entire files. This plugin automatically includes all compilation errors, warnings, and syntax issues as inline comments.
 
 <!-- Plugin description -->
-This Fancy IntelliJ Platform Plugin is going to be your implementation of the brilliant ideas that you have.
+**Copy File with Problems** is a powerful IntelliJ IDEA plugin that revolutionizes how you share and document code issues. 
+Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
+warnings, and syntax issues as inline comments.
 
-This specific section is a source for the [plugin.xml](/src/main/resources/META-INF/plugin.xml) file which will be extracted by the [Gradle](/build.gradle.kts) during the build process.
+## ✨ Key Features
 
-To keep everything working, do not remove `<!-- ... -->` sections. 
+- **📋 Smart Copy with Context** - Copy selected code with errors/warnings as inline comments
+- **📄 Complete File Export** - Copy entire files with all detected problems included
+- **🎯 Multi-Language Support** - Works with Java, Kotlin, YAML, JSON, and many other file types
+- **🔍 Comprehensive Error Detection** - Captures syntax errors, semantic issues, and inspection warnings
+- **🌐 Context Menu Integration** - Seamlessly integrated into editor and project tree context menus
+- **📍 Relative Path Headers** - Shows clean file paths relative to your project root
+
+## 🚀 Perfect For
+
+- **Code Reviews** - Share problematic code with complete error context
+- **Bug Reports** - Include exact error messages with the failing code
+- **Team Collaboration** - Share code issues without losing IDE context
+- **Documentation** - Document known issues with precise error details
+- **Stack Overflow** - Post complete, context-rich code examples
+
+## 💡 How It Works
+
+1. **Right-click in editor** → Select "Copy With Problems" for selected text
+2. **Right-click on file in project tree** → Select "Copy File with Problems" for entire files
+3. **Paste anywhere** → Get your code with all errors as // ERROR: comments
+
+## 🔧 Advanced Detection
+
+- **Java/Kotlin** - Compilation errors, missing return types, annotation issues, split identifiers
+- **YAML** - Block mapping errors, indentation issues, syntax violations
+- **General** - PSI syntax errors, unresolved references, inspection warnings
+
+*Transform your debugging workflow - never copy "silent" broken code again!*
 <!-- Plugin description end -->
 
 ## Installation
 
 - Using the IDE built-in plugin system:
   
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "intellij-plugin-copy-file-with-problems"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Copy File with Problems"</kbd> >
   <kbd>Install</kbd>
   
 - Using JetBrains Marketplace:

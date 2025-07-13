@@ -1,15 +1,79 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.israelkli.intellijplugincopyfilewithproblems</id>
-    <name>intellij-plugin-copy-file-with-problems</name>
-    <vendor>israel-kli</vendor>
+    <name>Copy File with Problems</name>
+    <version>1.0.0</version>
+    <vendor email="your-email@example.com" url="https://github.com/Israel-Kli">israel-kli</vendor>
 
+    <description><![CDATA[
+    <h2>🔍 Copy Code with Errors & Warnings Inline</h2>
+    
+    <p><strong>Copy File with Problems</strong> is a powerful IntelliJ IDEA plugin that revolutionizes how you share and document code issues. 
+    Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
+    warnings, and syntax issues as inline comments.</p>
+    
+    <h3>✨ Key Features</h3>
+    <ul>
+        <li><strong>📋 Smart Copy with Context</strong> - Copy selected code with errors/warnings as inline comments</li>
+        <li><strong>📄 Complete File Export</strong> - Copy entire files with all detected problems included</li>
+        <li><strong>🎯 Multi-Language Support</strong> - Works with Java, Kotlin, YAML, JSON, and many other file types</li>
+        <li><strong>🔍 Comprehensive Error Detection</strong> - Captures syntax errors, semantic issues, and inspection warnings</li>
+        <li><strong>🌐 Context Menu Integration</strong> - Seamlessly integrated into editor and project tree context menus</li>
+        <li><strong>📍 Relative Path Headers</strong> - Shows clean file paths relative to your project root</li>
+    </ul>
+    
+    <h3>🚀 Perfect For</h3>
+    <ul>
+        <li><strong>Code Reviews</strong> - Share problematic code with complete error context</li>
+        <li><strong>Bug Reports</strong> - Include exact error messages with the failing code</li>
+        <li><strong>Team Collaboration</strong> - Share code issues without losing IDE context</li>
+        <li><strong>Documentation</strong> - Document known issues with precise error details</li>
+        <li><strong>Stack Overflow</strong> - Post complete, context-rich code examples</li>
+    </ul>
+    
+    <h3>💡 How It Works</h3>
+    <ol>
+        <li><strong>Right-click in editor</strong> → Select "Copy With Problems" for selected text</li>
+        <li><strong>Right-click on file in project tree</strong> → Select "Copy File with Problems" for entire files</li>
+        <li><strong>Paste anywhere</strong> → Get your code with all errors as // ERROR: comments</li>
+    </ol>
+    
+    <h3>🔧 Advanced Detection</h3>
+    <ul>
+        <li><strong>Java</strong> - Compilation errors, missing return types, annotation issues, split identifiers</li>
+        <li><strong>YAML</strong> - Block mapping errors, indentation issues, syntax violations</li>
+        <li><strong>General</strong> - PSI syntax errors, unresolved references, inspection warnings</li>
+    </ul>
+    
+    <p><em>Transform your debugging workflow - never copy "silent" broken code again!</em></p>
+    ]]></description>
+
+    <change-notes><![CDATA[
+    <h3>🎉 Version 1.0.0 - Initial Release</h3>
+    <p>First stable release of Copy File with Problems plugin with comprehensive error detection and multi-language support.</p>
+    ]]></change-notes>
+
+    <idea-version since-build="242" until-build="252.*"/>
+    
     <depends>com.intellij.modules.platform</depends>
 
-    <resource-bundle>messages.MyBundle</resource-bundle>
-
-    <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.israelkli.intellijplugincopyfilewithproblems.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.israelkli.intellijplugincopyfilewithproblems.startup.MyProjectActivity" />
-    </extensions>
+    <actions>
+        <action id="CopyWithProblems"
+                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithProblemsAction"
+                text="Copy With Problems"
+                description="Copy selected code with associated errors and warnings as comments"
+                icon="/icons/copyWithProblems.svg">
+            <add-to-group group-id="EditorPopupMenu" anchor="last"/>
+        </action>
+        
+        <action id="CopyFileWithProblems"
+                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithProblemsAction"
+                text="Copy File with Problems"
+                description="Copy entire file content with associated errors and warnings as comments"
+                icon="/icons/copyWithProblems.svg">
+            <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>
+            <add-to-group group-id="EditorTabPopupMenu" anchor="last"/>
+            <add-to-group group-id="ProjectViewPopupMenuSettingsGroup" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
