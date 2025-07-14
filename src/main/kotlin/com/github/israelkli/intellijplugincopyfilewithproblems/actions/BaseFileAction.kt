@@ -1,6 +1,7 @@
 package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 
 import com.github.israelkli.intellijplugincopyfilewithproblems.services.ProblemDetectionService
+import com.intellij.lang.Language
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.ide.CopyPasteManager
@@ -19,6 +20,52 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
         CopyPasteManager.getInstance().setContents(selection)
     }
     
+    fun getCommentPrefix(psiFile: PsiFile): String {
+        val language = psiFile.language
+        val languageId = language.id.lowercase()
+        
+        return when {
+            languageId.contains("python") -> "# "
+            languageId.contains("ruby") -> "# "
+            languageId.contains("shell") -> "# "
+            languageId.contains("bash") -> "# "
+            languageId.contains("yaml") -> "# "
+            languageId.contains("toml") -> "# "
+            languageId.contains("dockerfile") -> "# "
+            languageId.contains("makefile") -> "# "
+            languageId.contains("properties") -> "# "
+            languageId.contains("ini") -> "; "
+            languageId.contains("sql") -> "-- "
+            languageId.contains("lua") -> "-- "
+            languageId.contains("haskell") -> "-- "
+            languageId.contains("html") -> "<!-- "
+            languageId.contains("xml") -> "<!-- "
+            languageId.contains("css") -> "/* "
+            languageId.contains("scss") -> "// "
+            languageId.contains("sass") -> "// "
+            languageId.contains("less") -> "// "
+            else -> "// " // Default for Java, JavaScript, TypeScript, Kotlin, C, C++, PHP, etc.
+        }
+    }
+    
+    fun getCommentSuffix(psiFile: PsiFile): String {
+        val language = psiFile.language
+        val languageId = language.id.lowercase()
+        
+        return when {
+            languageId.contains("html") -> " -->"
+            languageId.contains("xml") -> " -->"
+            languageId.contains("css") -> " */"
+            else -> ""
+        }
+    }
+    
+    protected fun formatComment(psiFile: PsiFile, severityPrefix: String, message: String): String {
+        val prefix = getCommentPrefix(psiFile)
+        val suffix = getCommentSuffix(psiFile)
+        return "$prefix$severityPrefix: $message$suffix"
+    }
+    
     protected fun buildContentWithProblems(
         psiFile: PsiFile,
         document: com.intellij.openapi.editor.Document,
@@ -29,7 +76,8 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
         return buildString {
             val virtualFile = psiFile.virtualFile
             if (virtualFile != null) {
-                appendLine(headerProvider(virtualFile.name))
+                val headerComment = formatComment(psiFile, "FILE", headerProvider(virtualFile.name))
+                appendLine(headerComment)
                 appendLine()
             }
             
@@ -51,7 +99,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                         "INSPECTION" -> "INSPECTION"
                         else -> problem.severity
                     }
-                    append("// $severityPrefix: ${problem.message}")
+                    append(formatComment(psiFile, severityPrefix, problem.message))
                 }
                 appendLine()
             }
@@ -71,7 +119,9 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
             } else {
                 virtualFile.path
             }
-            appendLine("// $relativePath")
+            
+            val headerComment = formatComment(psiFile, "FILE", relativePath)
+            appendLine(headerComment)
             appendLine()
             
             val fileContent = document.text
@@ -92,7 +142,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                         "INSPECTION" -> "INSPECTION"
                         else -> problem.severity
                     }
-                    append("// $severityPrefix: ${problem.message}")
+                    append(formatComment(psiFile, severityPrefix, problem.message))
                 }
                 appendLine()
             }

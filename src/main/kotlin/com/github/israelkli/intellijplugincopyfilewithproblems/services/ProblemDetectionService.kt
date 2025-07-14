@@ -11,6 +11,7 @@ import com.intellij.profile.codeInspection.InspectionProjectProfileManager
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.PsiFile
+import com.intellij.psi.util.PsiTreeUtil
 
 class ProblemDetectionService {
     
@@ -21,6 +22,7 @@ class ProblemDetectionService {
         
         try {
             // Method 1: Get highlights from DaemonCodeAnalyzer (native IDEA inspections)
+            // This works best in IntelliJ IDEA, but may have limited functionality in other IDEs
             val highlights = getHighlightsForRange(psiFile, lineStartOffset, lineEndOffset)
             for (highlight in highlights) {
                 if (highlight.description != null && highlight.description.isNotBlank()) {
@@ -41,13 +43,13 @@ class ProblemDetectionService {
             }
             
             // Method 2: Run active inspections programmatically
+            // This is more IDE-agnostic but may be slower
             val inspectionProblems = runInspectionsOnRange(psiFile, lineStartOffset, lineEndOffset)
             problems.addAll(inspectionProblems)
             
-            // Method 3: Fallback to PSI-based error detection (for cases where daemon isn't available)
-            if (problems.isEmpty()) {
-                problems.addAll(findPsiProblems(psiFile, lineStartOffset, lineEndOffset))
-            }
+            // Method 3: Always run PSI-based error detection as it's the most reliable across IDEs
+            val psiProblems = findPsiProblems(psiFile, lineStartOffset, lineEndOffset)
+            problems.addAll(psiProblems)
             
         } catch (_: Exception) {
             // Fallback to simple PSI-based detection if native methods fail
@@ -94,39 +96,49 @@ class ProblemDetectionService {
             val inspectionProfile = InspectionProjectProfileManager.getInstance(project).currentProfile
             val enabledInspections = inspectionProfile.getInspectionTools(psiFile)
             
-            // Run a subset of important inspections
-            for (toolWrapper in enabledInspections.take(10)) { // Limit to avoid performance issues
-                if (toolWrapper.tool is LocalInspectionTool) {
-                    val inspectionTool = toolWrapper.tool as LocalInspectionTool
-                    val inspectionManager = InspectionManager.getInstance(project)
-                    
-                    // Run inspection on the file
-                    val descriptors = ReadAction.compute<Array<ProblemDescriptor>, RuntimeException> {
-                        inspectionTool.checkFile(psiFile, inspectionManager, false) ?: emptyArray()
-                    }
-                    
-                    // Filter descriptors that are within our range
-                    for (descriptor in descriptors) {
-                        val element = descriptor.psiElement
-                        if (element != null) {
-                            val elementStart = element.textRange.startOffset
-                            val elementEnd = element.textRange.endOffset
-                            
-                            // Check if the problem overlaps with our range
-                            if (elementStart < endOffset && elementEnd > startOffset) {
-                                problems.add(ProblemInfo(
-                                    severity = "INSPECTION",
-                                    message = descriptor.descriptionTemplate,
-                                    startOffset = elementStart,
-                                    endOffset = elementEnd
-                                ))
+            // Run a conservative subset of important inspections
+            // Different IDEs may have different inspection availability
+            for (toolWrapper in enabledInspections.take(5)) { // Reduced limit for better cross-IDE compatibility
+                try {
+                    if (toolWrapper.tool is LocalInspectionTool) {
+                        val inspectionTool = toolWrapper.tool as LocalInspectionTool
+                        val inspectionManager = InspectionManager.getInstance(project)
+                        
+                        // Run inspection on the file with proper error handling
+                        val descriptors = ReadAction.compute<Array<ProblemDescriptor>, RuntimeException> {
+                            try {
+                                inspectionTool.checkFile(psiFile, inspectionManager, false) ?: emptyArray()
+                            } catch (_: Exception) {
+                                emptyArray<ProblemDescriptor>()
+                            }
+                        }
+                        
+                        // Filter descriptors that are within our range
+                        for (descriptor in descriptors) {
+                            val element = descriptor.psiElement
+                            if (element != null) {
+                                val elementStart = element.textRange.startOffset
+                                val elementEnd = element.textRange.endOffset
+                                
+                                // Check if the problem overlaps with our range
+                                if (elementStart < endOffset && elementEnd > startOffset) {
+                                    problems.add(ProblemInfo(
+                                        severity = "INSPECTION",
+                                        message = descriptor.descriptionTemplate,
+                                        startOffset = elementStart,
+                                        endOffset = elementEnd
+                                    ))
+                                }
                             }
                         }
                     }
+                } catch (_: Exception) {
+                    // Skip this inspection if it fails - continue with others
+                    continue
                 }
             }
         } catch (_: Exception) {
-            // If inspection running fails, continue with other methods
+            // If inspection running fails completely, continue with other methods
         }
         
         return problems
@@ -136,9 +148,31 @@ class ProblemDetectionService {
         val problems = mutableListOf<ProblemInfo>()
         
         try {
-            // Only check for native PSI errors - no custom pattern matching
+            // Method 1: Use PsiTreeUtil to find all PSI errors in the range
+            // This is more robust across different IDEs
+            val rootElement = psiFile.findElementAt(lineStartOffset)?.containingFile
+            if (rootElement != null) {
+                val errorElements = PsiTreeUtil.findChildrenOfType(rootElement, PsiErrorElement::class.java)
+                for (errorElement in errorElements) {
+                    val errorStart = errorElement.textRange.startOffset
+                    val errorEnd = errorElement.textRange.endOffset
+                    
+                    // Check if error overlaps with our range
+                    if (errorStart < lineEndOffset && errorEnd > lineStartOffset) {
+                        val errorMessage = errorElement.errorDescription
+                        if (errorMessage.isNotBlank()) {
+                            problems.add(ProblemInfo(
+                                severity = "ERROR",
+                                message = errorMessage,
+                                startOffset = errorStart,
+                                endOffset = errorEnd
+                            ))
+                        }
+                    }
+                }
+            }
             
-            // Method 1: Check for PSI errors at line start
+            // Method 2: Check for PSI errors at line start (fallback)
             val elementAtStart = psiFile.findElementAt(lineStartOffset)
             if (elementAtStart is PsiErrorElement) {
                 val errorMessage = elementAtStart.errorDescription
@@ -150,24 +184,6 @@ class ProblemDetectionService {
                         endOffset = elementAtStart.textRange.endOffset
                     ))
                 }
-            }
-            
-            // Method 2: Check parent elements for errors (up to 2 levels to avoid deep traversal)
-            var currentElement = elementAtStart?.parent
-            repeat(2) {
-                if (currentElement is PsiErrorElement) {
-                    val errorMessage = currentElement.errorDescription
-                    if (errorMessage.isNotBlank()) {
-                        problems.add(ProblemInfo(
-                            severity = "ERROR",
-                            message = errorMessage,
-                            startOffset = currentElement.textRange.startOffset,
-                            endOffset = currentElement.textRange.endOffset
-                        ))
-                    }
-                    return@repeat
-                }
-                currentElement = currentElement?.parent
             }
             
             // Method 3: Scan through elements within the line range for PSI errors

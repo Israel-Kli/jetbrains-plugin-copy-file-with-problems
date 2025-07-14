@@ -60,6 +60,11 @@
     
     <depends>com.intellij.modules.platform</depends>
     <depends>com.intellij.modules.lang</depends>
+    
+    <!-- Optional dependencies for better IDE-specific support -->
+    <depends optional="true" config-file="webstorm-support.xml">com.intellij.modules.javascript</depends>
+    <depends optional="true" config-file="python-support.xml">com.intellij.modules.python</depends>
+    <depends optional="true" config-file="java-support.xml">com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
         <notificationGroup id="Copy File with Problems" displayType="BALLOON"/>

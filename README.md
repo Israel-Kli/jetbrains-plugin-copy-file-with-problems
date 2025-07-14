@@ -11,7 +11,7 @@ Never lose context when sharing code snippets or entire files. This plugin autom
 <!-- Plugin description -->
 **Copy File with Problems** is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
 Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
-warnings, and syntax issues as inline comments.
+warnings, and syntax issues as inline comments using the correct comment syntax for each programming language.
 
 ## ✨ Key Features
 
@@ -21,6 +21,9 @@ warnings, and syntax issues as inline comments.
 - **🔍 Comprehensive Error Detection** - Captures syntax errors, semantic issues, and inspection warnings
 - **🌐 Context Menu Integration** - Seamlessly integrated into editor and project tree context menus
 - **📍 Relative Path Headers** - Shows clean file paths relative to your project root
+- **🗣️ Language-Aware Comments** - Automatically uses the correct comment syntax for each programming language
+- **🔄 Cross-Platform Compatibility** - Works consistently across IntelliJ IDEA, WebStorm, PyCharm, and other JetBrains IDEs
+- **⚡ Robust Error Detection** - Multiple fallback mechanisms ensure error detection works even when IDE-specific features aren't available
 
 ## 🚀 Perfect For
 
@@ -34,7 +37,52 @@ warnings, and syntax issues as inline comments.
 
 1. **Right-click in editor** → Select "Copy With Problems" for selected text
 2. **Right-click on file in project tree** → Select "Copy File with Problems" for entire files
-3. **Paste anywhere** → Get your code with all errors as // ERROR: comments
+3. **Paste anywhere** → Get your code with all errors as language-appropriate comments
+
+## 📝 Example Output
+
+The plugin automatically uses the correct comment syntax for each programming language:
+
+**Python files:**
+```python
+# FILE: src/calculator.py
+
+def calculate(a, b):
+    result = a + c
+    # ERROR: undefined variable 'c'
+    return result
+```
+
+**Java files:**
+```java
+// FILE: src/Calculator.java
+
+public class Calculator {
+    public int add(int a, int b) {
+        return a + c;
+        // ERROR: cannot resolve symbol 'c'
+    }
+}
+```
+
+**HTML files:**
+```html
+<!-- FILE: index.html -->
+
+<div>
+    <p>Hello World</span>
+    <!-- ERROR: mismatched closing tag -->
+</div>
+```
+
+**SQL files:**
+```sql
+-- FILE: queries/users.sql
+
+SELECT * FROM users
+WHERE invalid_column = 'value';
+-- ERROR: column 'invalid_column' doesn't exist
+```
 
 ## 🔧 Advanced Detection
 
@@ -47,6 +95,33 @@ warnings, and syntax issues as inline comments.
 
 *Transform your debugging workflow - never copy "silent" broken code again!*
 <!-- Plugin description end -->
+
+## 🌐 Cross-Platform Excellence
+
+This plugin has been specifically optimized for cross-platform compatibility:
+
+### ✅ **Key Benefits:**
+
+1. **🔄 Cross-Platform Compatibility**: Works consistently across IntelliJ IDEA, WebStorm, PyCharm, and other JetBrains IDEs
+2. **🗣️ Language-Aware Comments**: Automatically uses the correct comment syntax for each programming language
+3. **🔍 Robust Error Detection**: Multiple fallback mechanisms ensure error detection works even when IDE-specific features aren't available
+4. **⚡ Better Performance**: Optimized inspection running with proper error handling and limits
+5. **🧪 Comprehensive Testing**: Tests verify language-specific functionality and cross-platform compatibility
+
+### 🎯 **Language-Specific Comment Support:**
+
+- **Python, Ruby, Shell, YAML**: `# ERROR: message`
+- **Java, JavaScript, TypeScript, Kotlin**: `// ERROR: message`
+- **SQL, Lua, Haskell**: `-- ERROR: message`
+- **HTML, XML**: `<!-- ERROR: message -->`
+- **CSS**: `/* ERROR: message */`
+
+### 🔧 **Enhanced Error Detection:**
+
+- **PSI-based detection**: Works across all IDE environments
+- **Inspection system integration**: Leverages IDE-specific inspections when available
+- **Fallback mechanisms**: Ensures functionality even when some features aren't available
+- **Multiple detection methods**: Combines different approaches for comprehensive error coverage
 
 ## Compatibility
 
