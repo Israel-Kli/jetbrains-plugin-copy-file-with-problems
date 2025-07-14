@@ -7,7 +7,6 @@ import com.intellij.codeInspection.ProblemDescriptor
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.application.ReadAction
 import com.intellij.openapi.editor.impl.DocumentMarkupModel
-import com.intellij.openapi.util.TextRange
 import com.intellij.profile.codeInspection.InspectionProjectProfileManager
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiErrorElement
@@ -137,7 +136,9 @@ class ProblemDetectionService {
         val problems = mutableListOf<ProblemInfo>()
         
         try {
-            // Method 1: Check for PSI errors at line start and nearby elements
+            // Only check for native PSI errors - no custom pattern matching
+            
+            // Method 1: Check for PSI errors at line start
             val elementAtStart = psiFile.findElementAt(lineStartOffset)
             if (elementAtStart is PsiErrorElement) {
                 val errorMessage = elementAtStart.errorDescription
@@ -151,7 +152,7 @@ class ProblemDetectionService {
                 }
             }
             
-            // Check parent elements (up to 2 levels to avoid deep traversal)
+            // Method 2: Check parent elements for errors (up to 2 levels to avoid deep traversal)
             var currentElement = elementAtStart?.parent
             repeat(2) {
                 if (currentElement is PsiErrorElement) {
@@ -169,10 +170,10 @@ class ProblemDetectionService {
                 currentElement = currentElement?.parent
             }
             
-            // Method 2: Check a few elements within the line range (limited to avoid hanging)
+            // Method 3: Scan through elements within the line range for PSI errors
             var offset = lineStartOffset
             var elementCount = 0
-            while (offset < lineEndOffset && elementCount < 5) { // Limit to 5 elements per line
+            while (offset < lineEndOffset && elementCount < 10) { // Limit to 10 elements per line
                 val element = psiFile.findElementAt(offset)
                 if (element is PsiErrorElement) {
                     val errorMessage = element.errorDescription
@@ -187,42 +188,6 @@ class ProblemDetectionService {
                 }
                 offset += maxOf(1, element?.textLength ?: 1)
                 elementCount++
-            }
-            
-            // Method 3: Pattern-based checks
-            val document = elementAtStart?.containingFile?.let { 
-                PsiDocumentManager.getInstance(it.project).getDocument(it) 
-            }
-            if (document != null) {
-                val lineText = document.getText(TextRange(lineStartOffset, lineEndOffset))
-                
-                // Check for split identifiers like "cacheM anager"
-                if (psiFile.name.endsWith(".java") || psiFile.name.endsWith(".kt")) {
-                    val splitPattern = Regex("\\b([a-zA-Z]+)\\s+([a-z][a-zA-Z]*)(\\s*\\()")
-                    val match = splitPattern.find(lineText)
-                    if (match != null) {
-                        val matchStart = lineStartOffset + match.range.first
-                        val matchEnd = lineStartOffset + match.range.last + 1
-                        problems.add(ProblemInfo(
-                            severity = "ERROR",
-                            message = "Split identifier detected: '${match.groupValues[1]} ${match.groupValues[2]}'",
-                            startOffset = matchStart,
-                            endOffset = matchEnd
-                        ))
-                    }
-                }
-                
-                // Check for YAML errors
-                if (psiFile.name.endsWith(".yaml") || psiFile.name.endsWith(".yml")) {
-                    if (lineText.contains("\t")) {
-                        problems.add(ProblemInfo(
-                            severity = "ERROR",
-                            message = "YAML does not allow tabs for indentation",
-                            startOffset = lineStartOffset,
-                            endOffset = lineEndOffset
-                        ))
-                    }
-                }
             }
             
         } catch (_: Exception) {
