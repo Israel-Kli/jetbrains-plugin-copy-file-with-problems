@@ -9,7 +9,7 @@
 Never lose context when sharing code snippets or entire files. This plugin automatically includes all compilation errors, warnings, and syntax issues as inline comments.
 
 <!-- Plugin description -->
-**Copy File with Problems** is a powerful IntelliJ IDEA plugin that revolutionizes how you share and document code issues. 
+**Copy File with Problems** is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
 Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
 warnings, and syntax issues as inline comments.
 
@@ -17,7 +17,7 @@ warnings, and syntax issues as inline comments.
 
 - **📋 Smart Copy with Context** - Copy selected code with errors/warnings as inline comments
 - **📄 Complete File Export** - Copy entire files with all detected problems included
-- **🎯 Multi-Language Support** - Works with Java, Kotlin, YAML, JSON, and many other file types
+- **🎯 Multi-Language Support** - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, YAML, JSON, and many other file types
 - **🔍 Comprehensive Error Detection** - Captures syntax errors, semantic issues, and inspection warnings
 - **🌐 Context Menu Integration** - Seamlessly integrated into editor and project tree context menus
 - **📍 Relative Path Headers** - Shows clean file paths relative to your project root
@@ -39,11 +39,27 @@ warnings, and syntax issues as inline comments.
 ## 🔧 Advanced Detection
 
 - **Java/Kotlin** - Compilation errors, missing return types, annotation issues, split identifiers
+- **JavaScript/TypeScript** - Syntax errors, type mismatches, ESLint warnings
+- **Python** - Syntax errors, import issues, PEP violations
+- **PHP** - Parse errors, undefined variables, coding standard violations
 - **YAML** - Block mapping errors, indentation issues, syntax violations
 - **General** - PSI syntax errors, unresolved references, inspection warnings
 
 *Transform your debugging workflow - never copy "silent" broken code again!*
 <!-- Plugin description end -->
+
+## Compatibility
+
+This plugin is compatible with all JetBrains IDEs including:
+- IntelliJ IDEA (Community & Ultimate)
+- WebStorm
+- PyCharm (Community & Professional)
+- PhpStorm
+- GoLand
+- CLion
+- DataGrip
+- Rider
+- And other JetBrains IDEs based on the IntelliJ Platform
 
 ## Installation
 
