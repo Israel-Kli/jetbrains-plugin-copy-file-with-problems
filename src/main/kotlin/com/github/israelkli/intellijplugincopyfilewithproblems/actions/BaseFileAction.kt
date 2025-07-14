@@ -40,10 +40,18 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 
                 append(lineText)
                 
-                val problems = problemDetectionService.findSimpleProblems(psiFile, lineStartOffset, lineEndOffset)
+                val problems = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
                 for (problem in problems) {
                     appendLine()
-                    append("// ${problem.severity}: ${problem.message}")
+                    val severityPrefix = when (problem.severity) {
+                        "ERROR" -> "ERROR"
+                        "WARNING" -> "WARNING"
+                        "WEAK_WARNING" -> "WEAK_WARNING"
+                        "INFO" -> "INFO"
+                        "INSPECTION" -> "INSPECTION"
+                        else -> problem.severity
+                    }
+                    append("// $severityPrefix: ${problem.message}")
                 }
                 appendLine()
             }
@@ -73,10 +81,18 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 
                 val lineStartOffset = document.getLineStartOffset(index)
                 val lineEndOffset = document.getLineEndOffset(index)
-                val problems = problemDetectionService.findSimpleProblems(psiFile, lineStartOffset, lineEndOffset)
+                val problems = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
                 for (problem in problems) {
                     appendLine()
-                    append("// ${problem.severity}: ${problem.message}")
+                    val severityPrefix = when (problem.severity) {
+                        "ERROR" -> "ERROR"
+                        "WARNING" -> "WARNING"
+                        "WEAK_WARNING" -> "WEAK_WARNING"
+                        "INFO" -> "INFO"
+                        "INSPECTION" -> "INSPECTION"
+                        else -> problem.severity
+                    }
+                    append("// $severityPrefix: ${problem.message}")
                 }
                 appendLine()
             }
