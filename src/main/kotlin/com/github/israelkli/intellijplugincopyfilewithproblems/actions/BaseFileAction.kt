@@ -76,7 +76,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
         return buildString {
             val virtualFile = psiFile.virtualFile
             if (virtualFile != null) {
-                val headerComment = formatComment(psiFile, "FILE", headerProvider(virtualFile.name))
+                val headerComment = formatComment(psiFile, "File", headerProvider(virtualFile.name))
                 appendLine(headerComment)
                 appendLine()
             }
@@ -120,7 +120,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 virtualFile.path
             }
             
-            val headerComment = formatComment(psiFile, "FILE", relativePath)
+            val headerComment = formatComment(psiFile, "File", relativePath)
             appendLine(headerComment)
             appendLine()
             
