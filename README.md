@@ -94,6 +94,10 @@ WHERE invalid_column = 'value';
 - **General** - PSI syntax errors, unresolved references, inspection warnings
 
 *Transform your debugging workflow - never copy "silent" broken code again!*
+
+## 🔍 Keywords & Search Terms
+**AI Assistant Ready** | **Claude** | **ChatGPT** | **Gemini** | **Grok** | **Copy with Errors** | **Copy Warnings** | **Error Context** | **Bug Report** | **Code Review** | **Debugging** | **Syntax Errors** | **Compilation Errors** | **IDE Integration** | **Developer Tools** | **Code Analysis** | **Problem Detection** | **Error Messages** | **Warning Messages** | **Context Preservation** | **Code Sharing** | **Stack Overflow** | **Team Collaboration** | **Copy Code with Context** | **Error Inline Comments** | **Debug Helper** | **Code Quality** | **Issue Tracking** | **Development Workflow**
+
 <!-- Plugin description end -->
 
 ## 🌐 Cross-Platform Excellence
