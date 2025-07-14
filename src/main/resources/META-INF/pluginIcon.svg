@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40">
+  <defs>
+    <linearGradient id="clipboardGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#E3F2FD;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#BBDEFB;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="errorGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#FF5252;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#D32F2F;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background circle -->
+  <circle cx="20" cy="20" r="18" fill="url(#clipboardGradient)" stroke="#1976D2" stroke-width="2"/>
+  
+  <!-- Clipboard base -->
+  <rect x="8" y="10" width="20" height="24" rx="2" fill="white" stroke="#1976D2" stroke-width="2"/>
+  
+  <!-- Clipboard clip -->
+  <rect x="15" y="6" width="10" height="4" rx="2" fill="#1976D2"/>
+  <rect x="16" y="7" width="8" height="2" rx="1" fill="white"/>
+  
+  <!-- Code lines -->
+  <line x1="12" y1="16" x2="24" y2="16" stroke="#666" stroke-width="1.5"/>
+  <line x1="12" y1="20" x2="24" y2="20" stroke="#666" stroke-width="1.5"/>
+  <line x1="12" y1="24" x2="20" y2="24" stroke="#666" stroke-width="1.5"/>
+  <line x1="12" y1="28" x2="22" y2="28" stroke="#666" stroke-width="1.5"/>
+  
+  <!-- Error/Warning indicator -->
+  <circle cx="28" cy="12" r="6" fill="url(#errorGradient)" stroke="white" stroke-width="2"/>
+  <text x="28" y="16" text-anchor="middle" font-size="8" fill="white" font-weight="bold">!</text>
+  
+  <!-- Small code brackets to emphasize programming -->
+  <text x="10" y="18" font-size="6" fill="#1976D2" font-weight="bold">{</text>
+  <text x="26" y="18" font-size="6" fill="#1976D2" font-weight="bold">}</text>
+</svg>
