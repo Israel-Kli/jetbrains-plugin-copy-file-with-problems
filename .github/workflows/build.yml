@@ -103,9 +103,12 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-      # Check out the current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v4
+      # Download already-built plugin
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.filename }}
+          path: ./build/distributions/content
 
       # Set up Java environment for the next steps
       - name: Setup Java
@@ -188,9 +191,12 @@ jobs:
           tool-cache: false
           large-packages: false
 
-      # Check out the current repository
-      - name: Fetch Sources
-        uses: actions/checkout@v4
+      # Download already-built plugin
+      - name: Download artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: ${{ needs.build.outputs.filename }}
+          path: ./build/distributions/content
 
       # Set up Java environment for the next steps
       - name: Setup Java
