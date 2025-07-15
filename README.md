@@ -1,6 +1,6 @@
 # Copy File with Problems
 
-![Build](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/workflows/Build/badge.svg)
+![Build](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
@@ -157,7 +157,7 @@ This plugin is compatible with all JetBrains IDEs including:
 
 - Manually:
 
-  Download the [latest release](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
@@ -176,7 +176,7 @@ To build the plugin ZIP file for distribution:
 mkdir -p build/tmp/buildSearchableOptions && ./gradlew buildPlugin -x buildSearchableOptions
 ```
 
-This creates the distributable ZIP at: `build/distributions/intellij-plugin-copy-file-with-problems-1.0.0.zip`
+This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
 
 **If you encounter build issues, try a clean build:**
 ```bash
@@ -202,7 +202,7 @@ This launches a sandbox IntelliJ instance with your plugin pre-installed.
 
 After building:
 1. Install the ZIP file: <kbd>Settings</kbd> → <kbd>Plugins</kbd> → <kbd>⚙️</kbd> → <kbd>Install Plugin from Disk</kbd>
-2. Select: `build/distributions/intellij-plugin-copy-file-with-problems-1.0.0.zip`
+2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
 3. Restart IntelliJ to ensure clean plugin loading
 4. Test both actions:
    - **Editor**: Select text → right-click → "Copy With Problems"
