@@ -27,6 +27,7 @@ warnings, and syntax issues as inline comments using the correct comment syntax 
 
 ## 🚀 Perfect For
 
+- **AI-Assisted Code Fixing** - Copy problematic files with inline errors directly to AI tools (e.g., Claude Code, ChatGPT, Gemini, or other external chats) for quick and accurate fixes.
 - **Code Reviews** - Share problematic code with complete error context
 - **Bug Reports** - Include exact error messages with the failing code
 - **Team Collaboration** - Share code issues without losing IDE context
