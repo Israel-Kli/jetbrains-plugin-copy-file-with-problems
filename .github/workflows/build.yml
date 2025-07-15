@@ -170,7 +170,7 @@ jobs:
 
       # Create Kotlin profile directory for Qodana
       - name: Create Kotlin Profile Directory
-        run: mkdir -p /data/cache/gradle/kotlin-profile
+        run: mkdir -p ~/.cache/qodana/kotlin-profile
 
       # Run Qodana inspections
       - name: Qodana - Code Inspection
