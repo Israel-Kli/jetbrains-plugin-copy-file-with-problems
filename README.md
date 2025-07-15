@@ -160,6 +160,12 @@ This plugin is compatible with all JetBrains IDEs including:
   Download the [latest release](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
+
+Plugin is inspired by other plugins which have only partial functionality or are outdated, such as:
+- [Code-File-Grabber](https://plugins.jetbrains.com/plugin/21269-code-file-grabber)
+- [CopyWithProblems](https://plugins.jetbrains.com/plugin/23051-copywithproblems)
+- [SLAMP](https://plugins.jetbrains.com/plugin/26544-slamp)
+
 ## Development
 
 ### Building the Plugin
@@ -203,7 +209,3 @@ After building:
    - **Project Tree**: Right-click file → "Copy File with Problems"
 
 ---
-Plugin based on the [IntelliJ Platform Plugin Template][template].
-
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation
