@@ -58,6 +58,8 @@ jobs:
         run: |
           PROPERTIES="$(./gradlew properties --console=plain -q)"
           VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
+
+          echo "DEBUG: Detected version: $VERSION"
           
           if [ "$VERSION" = "Unreleased" ]; then
             CHANGELOG=""
