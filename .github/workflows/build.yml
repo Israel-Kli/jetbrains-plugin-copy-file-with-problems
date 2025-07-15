@@ -62,9 +62,9 @@ jobs:
           echo "DEBUG: Detected version: $VERSION"
           
           if [ "$VERSION" = "Unreleased" ]; then
-            CHANGELOG=""
-          else
             CHANGELOG="$(./gradlew getChangelog --unreleased --no-header --console=plain -q)"
+          else
+            CHANGELOG=""
           fi
 
           echo "version=$VERSION" >> $GITHUB_OUTPUT
