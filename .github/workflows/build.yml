@@ -168,6 +168,10 @@ jobs:
           distribution: zulu
           java-version: 21
 
+      # Create Kotlin profile directory for Qodana
+      - name: Create Kotlin Profile Directory
+        run: mkdir -p /data/cache/gradle/kotlin-profile
+
       # Run Qodana inspections
       - name: Qodana - Code Inspection
         uses: JetBrains/qodana-action@v2024.2
