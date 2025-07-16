@@ -2,4 +2,4 @@ plugins {
     id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
 }
 
-rootProject.name = "intellij-plugin-copy-file-with-problems"
+rootProject.name = "idea-plugin-copy-file-with-problems"
