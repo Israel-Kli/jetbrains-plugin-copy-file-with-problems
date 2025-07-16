@@ -1,6 +1,6 @@
 # Copy File with Problems
 
-![Build](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/workflows/Build/badge.svg)
+![Build](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 [![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
 
@@ -27,6 +27,7 @@ warnings, and syntax issues as inline comments using the correct comment syntax 
 
 ## 🚀 Perfect For
 
+- **AI-Assisted Code Fixing** - Copy problematic files with inline errors directly to AI tools (e.g., Claude Code, ChatGPT, Gemini, or other external chats) for quick and accurate fixes.
 - **Code Reviews** - Share problematic code with complete error context
 - **Bug Reports** - Include exact error messages with the failing code
 - **Team Collaboration** - Share code issues without losing IDE context
@@ -94,6 +95,10 @@ WHERE invalid_column = 'value';
 - **General** - PSI syntax errors, unresolved references, inspection warnings
 
 *Transform your debugging workflow - never copy "silent" broken code again!*
+
+## 🔍 Keywords & Search Terms
+**AI Assistant Ready** | **Claude** | **ChatGPT** | **Gemini** | **Grok** | **Copy with Errors** | **Copy Warnings** | **Error Context** | **Bug Report** | **Code Review** | **Debugging** | **Syntax Errors** | **Compilation Errors** | **IDE Integration** | **Developer Tools** | **Code Analysis** | **Problem Detection** | **Error Messages** | **Warning Messages** | **Context Preservation** | **Code Sharing** | **Stack Overflow** | **Team Collaboration** | **Copy Code with Context** | **Error Inline Comments** | **Debug Helper** | **Code Quality** | **Issue Tracking** | **Development Workflow**
+
 <!-- Plugin description end -->
 
 ## 🌐 Cross-Platform Excellence
@@ -152,8 +157,14 @@ This plugin is compatible with all JetBrains IDEs including:
 
 - Manually:
 
-  Download the [latest release](https://github.com/Israel-Kli/intellij-plugin-copy-file-with-problems/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
+
+
+Plugin is inspired by other plugins which have only partial functionality or are outdated, such as:
+- [Code-File-Grabber](https://plugins.jetbrains.com/plugin/21269-code-file-grabber)
+- [CopyWithProblems](https://plugins.jetbrains.com/plugin/23051-copywithproblems)
+- [SLAMP](https://plugins.jetbrains.com/plugin/26544-slamp)
 
 ## Development
 
@@ -165,7 +176,7 @@ To build the plugin ZIP file for distribution:
 mkdir -p build/tmp/buildSearchableOptions && ./gradlew buildPlugin -x buildSearchableOptions
 ```
 
-This creates the distributable ZIP at: `build/distributions/intellij-plugin-copy-file-with-problems-1.0.0.zip`
+This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
 
 **If you encounter build issues, try a clean build:**
 ```bash
@@ -191,14 +202,10 @@ This launches a sandbox IntelliJ instance with your plugin pre-installed.
 
 After building:
 1. Install the ZIP file: <kbd>Settings</kbd> → <kbd>Plugins</kbd> → <kbd>⚙️</kbd> → <kbd>Install Plugin from Disk</kbd>
-2. Select: `build/distributions/intellij-plugin-copy-file-with-problems-1.0.0.zip`
+2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
 3. Restart IntelliJ to ensure clean plugin loading
 4. Test both actions:
    - **Editor**: Select text → right-click → "Copy With Problems"
    - **Project Tree**: Right-click file → "Copy File with Problems"
 
 ---
-Plugin based on the [IntelliJ Platform Plugin Template][template].
-
-[template]: https://github.com/JetBrains/intellij-platform-plugin-template
-[docs:plugin-description]: https://plugins.jetbrains.com/docs/intellij/plugin-user-experience.html#plugin-description-and-presentation

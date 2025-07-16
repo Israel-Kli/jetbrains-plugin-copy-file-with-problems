@@ -27,7 +27,7 @@ class CopyWithProblemsAction : BaseFileAction("Copy With Problems") {
             document,
             startLine,
             endLine
-        ) { fileName -> "// File: $fileName" }
+        ) { fileName -> "$fileName" }
         
         copyToClipboard(result)
     }
