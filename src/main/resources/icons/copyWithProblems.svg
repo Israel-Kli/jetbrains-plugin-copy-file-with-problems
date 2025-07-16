@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g fill="currentColor">
+    <!-- Clipboard base -->
+    <rect x="2" y="2" width="10" height="12" rx="1" fill="none" stroke="currentColor" stroke-width="1"/>
+    <rect x="4" y="1" width="6" height="2" rx="1" fill="currentColor"/>
+    
+    <!-- Code lines -->
+    <line x1="4" y1="6" x2="10" y2="6" stroke="currentColor" stroke-width="1"/>
+    <line x1="4" y1="8" x2="10" y2="8" stroke="currentColor" stroke-width="1"/>
+    <line x1="4" y1="10" x2="8" y2="10" stroke="currentColor" stroke-width="1"/>
+    
+    <!-- Warning/Error indicator -->
+    <circle cx="12" cy="4" r="2" fill="#FF6B6B"/>
+    <text x="12" y="5.5" text-anchor="middle" font-size="2.5" fill="white" font-weight="bold">!</text>
+  </g>
+</svg>

@@ -58,7 +58,14 @@ jobs:
         run: |
           PROPERTIES="$(./gradlew properties --console=plain -q)"
           VERSION="$(echo "$PROPERTIES" | grep "^version:" | cut -f2- -d ' ')"
-          CHANGELOG="$(./gradlew getChangelog --unreleased --no-header --console=plain -q)"
+
+          echo "DEBUG: Detected version: $VERSION"
+          
+          if [ "$VERSION" = "Unreleased" ]; then
+            CHANGELOG="$(./gradlew getChangelog --unreleased --no-header --console=plain -q)"
+          else
+            CHANGELOG=""
+          fi
 
           echo "version=$VERSION" >> $GITHUB_OUTPUT
           echo "pluginVerifierHomeDir=~/.pluginVerifier" >> $GITHUB_OUTPUT
