@@ -3,7 +3,7 @@ package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 
-class CopyWithProblemsAction : BaseFileAction("Copy With Problems") {
+class CopyWithProblemsAction : BaseFileAction("Copy with inline issues") {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.getRequiredData(CommonDataKeys.PROJECT)

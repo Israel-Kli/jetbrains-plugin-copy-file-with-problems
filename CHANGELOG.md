@@ -5,6 +5,14 @@ All notable changes to the "Copy with inline issues" plugin will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.4/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.5] - 2025-01-18
+
+### 🔄 Changed
+- **Complete name consistency** - Updated all references from "Copy File with Problems" to "Copy with inline issues" across the entire project
+- **Fixed marketplace display** - Plugin now correctly shows as "Copy with inline issues" in JetBrains Marketplace
+- **Updated documentation** - All installation instructions and references use the new name consistently
+- **Code cleanup** - Consistent naming throughout codebase, configuration files, and action classes
+
 ## [1.0.4] - 2025-01-18
 
 ### 🔄 Changed
@@ -25,7 +33,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 #### ✨ Added
 - **Copy With Problems** action for selected text in the editor
-- **Copy File with Problems** action for entire files in a project tree
+- **Copy File With Inline Issues** action for entire files in a project tree
 - Comprehensive error detection system with multiple detection methods:
   - PSI syntax error detection
   - Editor markup highlight analysis

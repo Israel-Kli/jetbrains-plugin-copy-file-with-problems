@@ -1,12 +1,8 @@
 # Copy with inline issues
 
-![Build](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.israelkli.intellijplugincopyfilewithproblems
-.svg)](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
-)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.israelkli.intellijplugincopyfilewithproblems
-.svg)](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
-)
+![Build](https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/workflows/Build/badge.svg)
+![Version](https://img.shields.io/jetbrains/plugin/v/com.github.israelkli.intellijplugincopyfilewithproblems)
+![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.israelkli.intellijplugincopyfilewithproblems)
 
 ## 🔍 Copy Code with Errors & Warnings Inline
 
@@ -40,8 +36,8 @@ warnings, and syntax issues as inline comments using the correct comment syntax 
 
 ## 💡 How It Works
 
-1. **Right-click in editor** → Select "Copy With Problems" for selected text
-2. **Right-click on file in project tree** → Select "Copy File with Problems" for entire files
+1. **Right-click in editor** → Select "Copy with inline issues" for selected text
+2. **Right-click on file in project tree** → Select "Copy file with inline issues" for entire files
 3. **Paste anywhere** → Get your code with all errors as language-appropriate comments
 
 ## 📝 Example Output
@@ -149,21 +145,19 @@ This plugin is compatible with all JetBrains IDEs including:
 
 - Using the IDE built-in plugin system:
   
-  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Copy File with Problems"</kbd> >
+  <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>Marketplace</kbd> > <kbd>Search for "Copy with inline issues"</kbd> >
   <kbd>Install</kbd>
   
 - Using JetBrains Marketplace:
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
-) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/27910-copy-file-with-problems) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
 
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
-/versions) from JetBrains Marketplace and install it manually using
+  You can also download the [latest release](https://plugins.jetbrains.com/plugin/27910-copy-file-with-problems/versions) from JetBrains Marketplace and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 - Manually:
 
-  Download the [latest release](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/releases/latest) and install it manually using
+  Download the [latest release](https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/releases/latest) and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 
@@ -182,7 +176,7 @@ To build the plugin ZIP file for distribution:
 mkdir -p build/tmp/buildSearchableOptions && ./gradlew buildPlugin -x buildSearchableOptions
 ```
 
-This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
+This creates the distributable ZIP at: `build/distributions/jetbrains-plugin-copy-with-inline-issues-1.0.5.zip`
 
 **If you encounter build issues, try a clean build:**
 ```bash
@@ -208,10 +202,10 @@ This launches a sandbox IntelliJ instance with your plugin pre-installed.
 
 After building:
 1. Install the ZIP file: <kbd>Settings</kbd> → <kbd>Plugins</kbd> → <kbd>⚙️</kbd> → <kbd>Install Plugin from Disk</kbd>
-2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
+2. Select: `build/distributions/jetbrains-plugin-copy-with-inline-issues-1.0.5.zip`
 3. Restart IntelliJ to ensure clean plugin loading
 4. Test both actions:
-   - **Editor**: Select text → right-click → "Copy With Problems"
-   - **Project Tree**: Right-click file → "Copy File with Problems"
+   - **Editor**: Select text → right-click → "Copy with inline issues"
+   - **Project Tree**: Right-click file → "Copy file with inline issues"
 
 ---
