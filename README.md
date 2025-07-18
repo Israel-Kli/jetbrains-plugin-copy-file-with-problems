@@ -36,8 +36,8 @@ warnings, and syntax issues as inline comments using the correct comment syntax 
 
 ## 💡 How It Works
 
-1. **Right-click in editor** → Select "Copy With Problems" for selected text
-2. **Right-click on file in project tree** → Select "Copy File with Problems" for entire files
+1. **Right-click in editor** → Select "Copy with inline issues" for selected text
+2. **Right-click on file in project tree** → Select "Copy file with inline issues" for entire files
 3. **Paste anywhere** → Get your code with all errors as language-appropriate comments
 
 ## 📝 Example Output
@@ -205,7 +205,7 @@ After building:
 2. Select: `build/distributions/jetbrains-plugin-copy-with-inline-issues-1.0.5.zip`
 3. Restart IntelliJ to ensure clean plugin loading
 4. Test both actions:
-   - **Editor**: Select text → right-click → "Copy With Problems"
-   - **Project Tree**: Right-click file → "Copy File with Problems"
+   - **Editor**: Select text → right-click → "Copy with inline issues"
+   - **Project Tree**: Right-click file → "Copy file with inline issues"
 
 ---
