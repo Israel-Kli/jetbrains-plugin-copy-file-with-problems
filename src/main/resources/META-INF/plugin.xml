@@ -1,9 +1,9 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.israelkli.intellijplugincopyfilewithproblems</id>
-    <name>Copy File with Problems</name>
-    <version>1.0.0</version>
-    <vendor email="your-email@example.com" url="https://github.com/Israel-Kli">israel-kli</vendor>
+    <name>Copy with inline issues</name>
+    <version>1.0.5</version>
+    <vendor url="https://github.com/Israel-Kli">israel-kli</vendor>
 
     <description><![CDATA[
     <h2>🔍 Copy Code with Errors & Warnings Inline</h2>
@@ -52,8 +52,13 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <h3>🎉 Version 1.0.0 - Initial Release</h3>
-    <p>First stable release of Copy File with Problems plugin with comprehensive error detection and multi-language support.</p>
+    <h3>🔄 Version 1.0.5 - Complete Rebranding</h3>
+    <ul>
+        <li><strong>Complete name consistency</strong> - Updated all references from "Copy File with Problems" to "Copy with inline issues"</li>
+        <li><strong>Fixed marketplace display</strong> - Plugin now correctly shows as "Copy with inline issues" in JetBrains Marketplace</li>
+        <li><strong>Updated documentation</strong> - All installation instructions and references use the new name</li>
+        <li><strong>Code cleanup</strong> - Consistent naming throughout codebase and configuration files</li>
+    </ul>
     ]]></change-notes>
 
     <idea-version since-build="242" until-build="252.*"/>
@@ -67,7 +72,7 @@
     <depends optional="true" config-file="java-support.xml">com.intellij.modules.java</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <notificationGroup id="Copy File with Problems" displayType="BALLOON"/>
+        <notificationGroup id="Copy with inline issues" displayType="BALLOON"/>
     </extensions>
 
     <actions>
@@ -81,7 +86,7 @@
         
         <action id="CopyFileWithProblems"
                 class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithProblemsAction"
-                text="Copy File with Problems"
+                text="Copy file with inline issues"
                 description="Copy entire file content with associated errors and warnings as comments"
                 icon="/icons/copyWithProblems.svg">
             <add-to-group group-id="ProjectViewPopupMenu" anchor="last"/>

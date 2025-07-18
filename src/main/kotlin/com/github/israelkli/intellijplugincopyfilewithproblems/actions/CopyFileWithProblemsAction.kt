@@ -5,7 +5,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiManager
 
-class CopyFileWithProblemsAction : BaseFileAction("Copy File with Problems") {
+class CopyFileWithProblemsAction : BaseFileAction("Copy file with inline issues") {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.getRequiredData(CommonDataKeys.PROJECT)
