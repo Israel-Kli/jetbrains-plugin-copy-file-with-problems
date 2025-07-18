@@ -1,15 +1,19 @@
-# Copy File with Problems
+# Copy with inline issues
 
 ![Build](https://github.com/Israel-Kli/idea-plugin-copy-file-with-problems/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/MARKETPLACE_ID.svg)](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID)
+[![Version](https://img.shields.io/jetbrains/plugin/v/com.github.israelkli.intellijplugincopyfilewithproblems
+.svg)](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
+)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/com.github.israelkli.intellijplugincopyfilewithproblems
+.svg)](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
+)
 
 ## 🔍 Copy Code with Errors & Warnings Inline
 
 Never lose context when sharing code snippets or entire files. This plugin automatically includes all compilation errors, warnings, and syntax issues as inline comments.
 
 <!-- Plugin description -->
-**Copy File with Problems** is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
+**Copy with inline issues** is a powerful plugin compatible with all JetBrains IDEs that revolutionizes how you share and document code issues. 
 Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
 warnings, and syntax issues as inline comments using the correct comment syntax for each programming language.
 
@@ -17,12 +21,12 @@ warnings, and syntax issues as inline comments using the correct comment syntax 
 
 - **📋 Smart Copy with Context** - Copy selected code with errors/warnings as inline comments
 - **📄 Complete File Export** - Copy entire files with all detected problems included
-- **🎯 Multi-Language Support** - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, YAML, JSON, and many other file types
+- **🎯 Multi-Language Support** - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, C/C++, C#, Go, Ruby, Rust, SQL, HTML, CSS, YAML, JSON, XML, and many other programming languages
 - **🔍 Comprehensive Error Detection** - Captures syntax errors, semantic issues, and inspection warnings
 - **🌐 Context Menu Integration** - Seamlessly integrated into editor and project tree context menus
 - **📍 Relative Path Headers** - Shows clean file paths relative to your project root
 - **🗣️ Language-Aware Comments** - Automatically uses the correct comment syntax for each programming language
-- **🔄 Cross-Platform Compatibility** - Works consistently across IntelliJ IDEA, WebStorm, PyCharm, and other JetBrains IDEs
+- **🔄 Cross-Platform Compatibility** - Works consistently across all JetBrains IDEs: IntelliJ IDEA Ultimate & Community, WebStorm, PyCharm, PhpStorm, CLion, GoLand, RubyMine, Rider, DataGrip, DataSpell, RustRover, Aqua, Android Studio, AppCode, MPS, JetBrains Client, Code With Me Guest, and Writerside
 - **⚡ Robust Error Detection** - Multiple fallback mechanisms ensure error detection works even when IDE-specific features aren't available
 
 ## 🚀 Perfect For
@@ -150,9 +154,11 @@ This plugin is compatible with all JetBrains IDEs including:
   
 - Using JetBrains Marketplace:
 
-  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
+  Go to [JetBrains Marketplace](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
+) and install it by clicking the <kbd>Install to ...</kbd> button in case your IDE is running.
 
-  You can also download the [latest release](https://plugins.jetbrains.com/plugin/MARKETPLACE_ID/versions) from JetBrains Marketplace and install it manually using
+  You can also download the [latest release](https://plugins.jetbrains.com/plugin/com.github.israelkli.intellijplugincopyfilewithproblems
+/versions) from JetBrains Marketplace and install it manually using
   <kbd>Settings/Preferences</kbd> > <kbd>Plugins</kbd> > <kbd>⚙️</kbd> > <kbd>Install plugin from disk...</kbd>
 
 - Manually:
@@ -176,7 +182,7 @@ To build the plugin ZIP file for distribution:
 mkdir -p build/tmp/buildSearchableOptions && ./gradlew buildPlugin -x buildSearchableOptions
 ```
 
-This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
+This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
 
 **If you encounter build issues, try a clean build:**
 ```bash
@@ -202,7 +208,7 @@ This launches a sandbox IntelliJ instance with your plugin pre-installed.
 
 After building:
 1. Install the ZIP file: <kbd>Settings</kbd> → <kbd>Plugins</kbd> → <kbd>⚙️</kbd> → <kbd>Install Plugin from Disk</kbd>
-2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
+2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
 3. Restart IntelliJ to ensure clean plugin loading
 4. Test both actions:
    - **Editor**: Select text → right-click → "Copy With Problems"
