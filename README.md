@@ -182,7 +182,7 @@ To build the plugin ZIP file for distribution:
 mkdir -p build/tmp/buildSearchableOptions && ./gradlew buildPlugin -x buildSearchableOptions
 ```
 
-This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
+This creates the distributable ZIP at: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
 
 **If you encounter build issues, try a clean build:**
 ```bash
@@ -208,7 +208,7 @@ This launches a sandbox IntelliJ instance with your plugin pre-installed.
 
 After building:
 1. Install the ZIP file: <kbd>Settings</kbd> → <kbd>Plugins</kbd> → <kbd>⚙️</kbd> → <kbd>Install Plugin from Disk</kbd>
-2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.0.zip`
+2. Select: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
 3. Restart IntelliJ to ensure clean plugin loading
 4. Test both actions:
    - **Editor**: Select text → right-click → "Copy With Problems"
