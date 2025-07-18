@@ -1,14 +1,14 @@
 <!-- Plugin Configuration File. Read more: https://plugins.jetbrains.com/docs/intellij/plugin-configuration-file.html -->
 <idea-plugin>
     <id>com.github.israelkli.intellijplugincopyfilewithproblems</id>
-    <name>Copy File with Problems</name>
-    <version>1.0.0</version>
-    <vendor email="your-email@example.com" url="https://github.com/Israel-Kli">israel-kli</vendor>
+    <name>Copy with inline issues</name>
+    <version>1.0.4</version>
+    <vendor url="https://github.com/Israel-Kli">israel-kli</vendor>
 
     <description><![CDATA[
     <h2>🔍 Copy Code with Errors & Warnings Inline</h2>
     
-    <p><strong>Copy File with Problems</strong> is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
+    <p><strong>Copy with inline issues</strong> is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
     Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
     warnings, and syntax issues as inline comments.</p>
     
@@ -52,8 +52,8 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <h3>🎉 Version 1.0.0 - Initial Release</h3>
-    <p>First stable release of Copy File with Problems plugin with comprehensive error detection and multi-language support.</p>
+    <h3>🎉 Version 1.0.4 - Initial Release</h3>
+    <p>First stable release of Copy with inline issues plugin with comprehensive error detection and multi-language support.</p>
     ]]></change-notes>
 
     <idea-version since-build="242" until-build="252.*"/>
