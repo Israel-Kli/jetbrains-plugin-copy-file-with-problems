@@ -1,13 +1,15 @@
 # Changelog
 
 All notable changes to the "Copy with inline issues" plugin will be documented in this file.
-
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.4/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
 
 ## [1.0.5] - 2025-01-18
 
 ### 🔄 Changed
+
 - **Complete name consistency** - Updated all references from "Copy File with Problems" to "Copy with inline issues" across the entire project
 - **Fixed marketplace display** - Plugin now correctly shows as "Copy with inline issues" in JetBrains Marketplace
 - **Updated documentation** - All installation instructions and references use the new name consistently
@@ -16,12 +18,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [1.0.4] - 2025-01-18
 
 ### 🔄 Changed
+
 - **Plugin name** updated from "Copy File with Problems" to "Copy with inline issues"
 - **Plugin description** updated to reflect new branding
 - **Version bumped** to 1.0.4 across all configuration files
 - **Documentation** updated to reflect new plugin name
 
 ### 🛠️ Technical
+
 - Added CLAUDE.md for development guidance and Claude Code integration
 - Updated GitHub Actions workflow with proper token usage
 - **Automatic deployment** - Added automated plugin publishing to JetBrains Marketplace
@@ -31,7 +35,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### 🎉 Initial Release
 
-#### ✨ Added
 - **Copy With Problems** action for selected text in the editor
 - **Copy File With Inline Issues** action for entire files in a project tree
 - Comprehensive error detection system with multiple detection methods:
@@ -57,23 +60,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - **Multi-language support** for all file types
 - Custom icons for both actions
 
-#### 🔧 Technical Features
-- Multiple error detection strategies for comprehensive coverage
-- Relative path calculation from the project root
-- Distinct severity levels (ERROR, WARNING, INFO)
-- Pattern-based validation for common syntax issues
-- Integration with IntelliJ's inspection profile system
-
-#### 🎯 Use Cases
-- Code reviews with complete error context
-- Bug reporting with precise error information
-- Team collaboration without losing IDE context
-- Documentation of known issues
-- Stack Overflow posts with comprehensive context
-
 ### 📋 Requirements
+
 - IntelliJ IDEA 2024.2+ (Build 242+)
 - Compatible with all IntelliJ-based IDEs
 
-### 🚀 Installation
-Install directly from the JetBrains Marketplace or download the plugin ZIP file.
+[Unreleased]: https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/compare/v1.0.5...HEAD
+[1.0.5]: https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/compare/v1.0.4...v1.0.5
+[1.0.4]: https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/compare/v1.0.0...v1.0.4
+[1.0.0]: https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/commits/v1.0.0
