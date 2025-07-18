@@ -8,7 +8,7 @@
     <description><![CDATA[
     <h2>🔍 Copy Code with Errors & Warnings Inline</h2>
     
-    <p><strong>Copy File with Problems</strong> is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
+    <p><strong>Copy with inline issues</strong> is a powerful plugin compatible with all JetBrains IDEs (IntelliJ IDEA Ultimate & Community, WebStorm, PyCharm, PhpStorm, CLion, GoLand, RubyMine, Rider, DataGrip, DataSpell, RustRover, Aqua, Android Studio, AppCode, MPS, JetBrains Client, Code With Me Guest, Writerside, and more) that revolutionizes how you share and document code issues. 
     Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
     warnings, and syntax issues as inline comments.</p>
     
@@ -16,7 +16,7 @@
     <ul>
         <li><strong>📋 Smart Copy with Context</strong> - Copy selected code with errors/warnings as inline comments</li>
         <li><strong>📄 Complete File Export</strong> - Copy entire files with all detected problems included</li>
-        <li><strong>🎯 Multi-Language Support</strong> - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, YAML, JSON, and many other file types</li>
+        <li><strong>🎯 Multi-Language Support</strong> - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, C/C++, C#, Go, Ruby, Rust, SQL, HTML, CSS, YAML, JSON, XML, and many other programming languages</li>
         <li><strong>🔍 Comprehensive Error Detection</strong> - Captures syntax errors, semantic issues, and inspection warnings</li>
         <li><strong>🌐 Context Menu Integration</strong> - Seamlessly integrated into editor and project tree context menus</li>
         <li><strong>📍 Relative Path Headers</strong> - Shows clean file paths relative to your project root</li>
@@ -44,6 +44,11 @@
         <li><strong>JavaScript/TypeScript</strong> - Syntax errors, type mismatches, ESLint warnings</li>
         <li><strong>Python</strong> - Syntax errors, import issues, PEP violations</li>
         <li><strong>PHP</strong> - Parse errors, undefined variables, coding standard violations</li>
+        <li><strong>C/C++</strong> - Compilation errors, memory issues, undefined behavior warnings</li>
+        <li><strong>C#</strong> - Compilation errors, nullable reference warnings, code analysis issues</li>
+        <li><strong>Go</strong> - Compilation errors, vet warnings, formatting issues</li>
+        <li><strong>Ruby</strong> - Syntax errors, runtime warnings, style violations</li>
+        <li><strong>Rust</strong> - Compilation errors, borrowing issues, clippy warnings</li>
         <li><strong>YAML</strong> - Block mapping errors, indentation issues, syntax violations</li>
         <li><strong>General</strong> - PSI syntax errors, unresolved references, inspection warnings</li>
     </ul>

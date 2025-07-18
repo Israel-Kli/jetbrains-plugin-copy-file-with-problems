@@ -1,4 +1,4 @@
-# Copy File with Problems
+# Copy with inline issues
 
 ![Build](https://github.com/Israel-Kli/jetbrains-plugin-copy-with-inline-issues/workflows/Build/badge.svg)
 ![Version](https://img.shields.io/jetbrains/plugin/v/com.github.israelkli.intellijplugincopyfilewithproblems)
@@ -9,7 +9,7 @@
 Never lose context when sharing code snippets or entire files. This plugin automatically includes all compilation errors, warnings, and syntax issues as inline comments.
 
 <!-- Plugin description -->
-**Copy File with Problems** is a powerful plugin for all JetBrains IDEs (IntelliJ IDEA, WebStorm, PyCharm, PhpStorm, etc.) that revolutionizes how you share and document code issues. 
+**Copy with inline issues** is a powerful plugin compatible with all JetBrains IDEs that revolutionizes how you share and document code issues. 
 Never lose context when copying code snippets or entire files - this plugin automatically includes all compilation errors, 
 warnings, and syntax issues as inline comments using the correct comment syntax for each programming language.
 
@@ -17,12 +17,12 @@ warnings, and syntax issues as inline comments using the correct comment syntax 
 
 - **📋 Smart Copy with Context** - Copy selected code with errors/warnings as inline comments
 - **📄 Complete File Export** - Copy entire files with all detected problems included
-- **🎯 Multi-Language Support** - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, YAML, JSON, and many other file types
+- **🎯 Multi-Language Support** - Works with Java, Kotlin, JavaScript, TypeScript, Python, PHP, C/C++, C#, Go, Ruby, Rust, SQL, HTML, CSS, YAML, JSON, XML, and many other programming languages
 - **🔍 Comprehensive Error Detection** - Captures syntax errors, semantic issues, and inspection warnings
 - **🌐 Context Menu Integration** - Seamlessly integrated into editor and project tree context menus
 - **📍 Relative Path Headers** - Shows clean file paths relative to your project root
 - **🗣️ Language-Aware Comments** - Automatically uses the correct comment syntax for each programming language
-- **🔄 Cross-Platform Compatibility** - Works consistently across IntelliJ IDEA, WebStorm, PyCharm, and other JetBrains IDEs
+- **🔄 Cross-Platform Compatibility** - Works consistently across all JetBrains IDEs: IntelliJ IDEA Ultimate & Community, WebStorm, PyCharm, PhpStorm, CLion, GoLand, RubyMine, Rider, DataGrip, DataSpell, RustRover, Aqua, Android Studio, AppCode, MPS, JetBrains Client, Code With Me Guest, and Writerside
 - **⚡ Robust Error Detection** - Multiple fallback mechanisms ensure error detection works even when IDE-specific features aren't available
 
 ## 🚀 Perfect For
