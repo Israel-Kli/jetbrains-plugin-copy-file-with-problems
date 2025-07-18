@@ -52,8 +52,13 @@
     ]]></description>
 
     <change-notes><![CDATA[
-    <h3>🎉 Version 1.0.4 - Initial Release</h3>
-    <p>First stable release of Copy with inline issues plugin with comprehensive error detection and multi-language support.</p>
+    <h3>🔄 Version 1.0.4 - Rebranding Update</h3>
+    <ul>
+        <li><strong>Plugin renamed</strong> from "Copy File with Problems" to "Copy with inline issues"</li>
+        <li><strong>Automatic deployment</strong> - Added automated plugin publishing to JetBrains Marketplace</li>
+        <li><strong>Enhanced documentation</strong> - Added development guidance and improved build instructions</li>
+        <li><strong>GitHub Actions improvements</strong> - Updated workflow with proper token usage</li>
+    </ul>
     ]]></change-notes>
 
     <idea-version since-build="242" until-build="252.*"/>

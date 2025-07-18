@@ -16,6 +16,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### 🛠️ Technical
 - Added CLAUDE.md for development guidance and Claude Code integration
 - Updated GitHub Actions workflow with proper token usage
+- **Automatic deployment** - Added automated plugin publishing to JetBrains Marketplace
 - Improved build documentation and distribution paths
 
 ## [1.0.0] - 2025-01-13
