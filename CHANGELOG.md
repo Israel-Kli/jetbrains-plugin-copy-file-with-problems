@@ -1,9 +1,23 @@
 # Changelog
 
-All notable changes to the "Copy File with Problems" plugin will be documented in this file.
+All notable changes to the "Copy with inline issues" plugin will be documented in this file.
 
-The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.4/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [1.0.4] - 2025-01-18
+
+### 🔄 Changed
+- **Plugin name** updated from "Copy File with Problems" to "Copy with inline issues"
+- **Plugin description** updated to reflect new branding
+- **Version bumped** to 1.0.4 across all configuration files
+- **Documentation** updated to reflect new plugin name
+
+### 🛠️ Technical
+- Added CLAUDE.md for development guidance and Claude Code integration
+- Updated GitHub Actions workflow with proper token usage
+- **Automatic deployment** - Added automated plugin publishing to JetBrains Marketplace
+- Improved build documentation and distribution paths
 
 ## [1.0.0] - 2025-01-13
 

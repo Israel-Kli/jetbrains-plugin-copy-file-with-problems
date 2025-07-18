@@ -13,7 +13,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - **Quick compile**: `./gradlew jar` (faster for development)
 
 ### Distribution
-- Plugin ZIP location: `build/distributions/idea-plugin-copy-file-with-problems-1.0.2.zip`
+- Plugin ZIP location: `build/distributions/idea-plugin-copy-file-with-problems-1.0.4.zip`
 - Install manually: Settings → Plugins → ⚙️ → Install Plugin from Disk
 
 ## Architecture
