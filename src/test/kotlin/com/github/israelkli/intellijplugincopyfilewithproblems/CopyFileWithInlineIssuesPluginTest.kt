@@ -1,18 +1,17 @@
 package com.github.israelkli.intellijplugincopyfilewithproblems
 
 import com.github.israelkli.intellijplugincopyfilewithproblems.actions.BaseFileAction
-import com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithProblemsAction
-import com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithProblemsAction
+import com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithInlineIssues
+import com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithInlineIssues
 import com.github.israelkli.intellijplugincopyfilewithproblems.services.ProblemDetectionService
 import com.intellij.ide.highlighter.XmlFileType
-import com.intellij.psi.PsiFile
 import com.intellij.psi.xml.XmlFile
 import com.intellij.testFramework.TestDataPath
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 import com.intellij.util.PsiErrorElementUtil
 
 @TestDataPath("\$CONTENT_ROOT/src/test/testData")
-class CopyFileWithProblemsPluginTest : BasePlatformTestCase() {
+class CopyFileWithInlineIssuesPluginTest : BasePlatformTestCase() {
 
     fun testXMLFile() {
         val psiFile = myFixture.configureByText(XmlFileType.INSTANCE, "<foo>bar</foo>")
@@ -42,18 +41,18 @@ class CopyFileWithProblemsPluginTest : BasePlatformTestCase() {
         val psiFile = myFixture.configureByText("TestClass.java", javaCode)
         val service = ProblemDetectionService()
         
-        val problems = service.findProblems(psiFile, 0, javaCode.length)
+        val issues = service.findProblems(psiFile, 0, javaCode.length)
         
-        assertNotNull(problems)
+        assertNotNull(issues)
     }
 
-    fun testCopyWithProblemsActionCreation() {
-        val action = CopyWithProblemsAction()
+    fun testCopyWithInlineIssuesActionCreation() {
+        val action = CopyWithInlineIssues()
         assertNotNull(action)
     }
 
-    fun testCopyFileWithProblemsActionCreation() {
-        val action = CopyFileWithProblemsAction()
+    fun testCopyFileWithInlineIssuesActionCreation() {
+        val action = CopyFileWithInlineIssues()
         assertNotNull(action)
     }
 
@@ -69,10 +68,10 @@ class CopyFileWithProblemsPluginTest : BasePlatformTestCase() {
         val psiFile = myFixture.configureByText("ValidClass.java", validJavaCode)
         val service = ProblemDetectionService()
         
-        val problems = service.findProblems(psiFile, 0, validJavaCode.length)
+        val issues = service.findProblems(psiFile, 0, validJavaCode.length)
         
         // Valid code should have no or minimal problems
-        assertNotNull(problems)
+        assertNotNull(issues)
     }
 
     fun testProblemDetectionWithInvalidCode() {
@@ -95,7 +94,7 @@ class CopyFileWithProblemsPluginTest : BasePlatformTestCase() {
     }
     
     fun testLanguageSpecificComments() {
-        val action = CopyFileWithProblemsAction()
+        val action = CopyFileWithInlineIssues()
         
         // Test Python file comment format
         val pythonCode = "def hello():\n    print('Hello')"

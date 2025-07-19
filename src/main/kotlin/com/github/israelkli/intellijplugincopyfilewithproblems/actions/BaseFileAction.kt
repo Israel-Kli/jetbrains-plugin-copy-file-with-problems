@@ -1,7 +1,6 @@
 package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 
 import com.github.israelkli.intellijplugincopyfilewithproblems.services.ProblemDetectionService
-import com.intellij.lang.Language
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.ide.CopyPasteManager
@@ -106,7 +105,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
         }
     }
     
-    protected fun buildFileContentWithProblems(
+    protected fun buildFileContentWithInlineIssues(
         psiFile: PsiFile,
         document: com.intellij.openapi.editor.Document,
         project: com.intellij.openapi.project.Project,
@@ -131,18 +130,18 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 
                 val lineStartOffset = document.getLineStartOffset(index)
                 val lineEndOffset = document.getLineEndOffset(index)
-                val problems = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
-                for (problem in problems) {
+                val issues = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
+                for (issue in issues) {
                     appendLine()
-                    val severityPrefix = when (problem.severity) {
+                    val severityPrefix = when (issue.severity) {
                         "ERROR" -> "ERROR"
                         "WARNING" -> "WARNING"
                         "WEAK_WARNING" -> "WEAK_WARNING"
                         "INFO" -> "INFO"
                         "INSPECTION" -> "INSPECTION"
-                        else -> problem.severity
+                        else -> issue.severity
                     }
-                    append(formatComment(psiFile, severityPrefix, problem.message))
+                    append(formatComment(psiFile, severityPrefix, issue.message))
                 }
                 appendLine()
             }

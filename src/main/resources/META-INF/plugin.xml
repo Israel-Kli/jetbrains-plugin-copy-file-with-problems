@@ -82,7 +82,7 @@
 
     <actions>
         <action id="CopyWithProblems"
-                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithProblemsAction"
+                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithInlineIssues"
                 text="Copy with inline issues"
                 description="Copy selected code with associated errors and warnings as comments"
                 icon="/icons/copyWithProblems.svg">
@@ -90,7 +90,7 @@
         </action>
         
         <action id="CopyFileWithProblems"
-                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithProblemsAction"
+                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithInlineIssues"
                 text="Copy file with inline issues"
                 description="Copy entire file content with associated errors and warnings as comments"
                 icon="/icons/copyWithProblems.svg">
