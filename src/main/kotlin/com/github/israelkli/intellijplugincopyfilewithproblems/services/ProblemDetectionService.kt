@@ -44,8 +44,8 @@ class ProblemDetectionService {
             
             // Method 2: Run active inspections programmatically
             // This is more IDE-agnostic but may be slower
-            val inspectionProblems = runInspectionsOnRange(psiFile, lineStartOffset, lineEndOffset)
-            problems.addAll(inspectionProblems)
+            val inspectionIssues = runInspectionsOnRange(psiFile, lineStartOffset, lineEndOffset)
+            problems.addAll(inspectionIssues)
             
             // Method 3: Always run PSI-based error detection as it's the most reliable across IDEs
             val psiProblems = findPsiProblems(psiFile, lineStartOffset, lineEndOffset)

@@ -3,11 +3,11 @@ package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 
-class CopyWithProblemsAction : BaseFileAction("Copy with inline issues") {
+class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
 
     override fun actionPerformed(e: AnActionEvent) {
-        val project = e.getRequiredData(CommonDataKeys.PROJECT)
-        val editor = e.getRequiredData(CommonDataKeys.EDITOR)
+        val project = e.getData(CommonDataKeys.PROJECT) ?: return
+        val editor = e.getData(CommonDataKeys.EDITOR) ?: return
         val psiFile = e.getData(CommonDataKeys.PSI_FILE) ?: return
         
         val selectionModel = editor.selectionModel

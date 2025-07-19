@@ -5,6 +5,18 @@ All notable changes to the "Copy with inline issues" plugin will be documented i
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.4/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [1.0.6] - 2025-01-19
+
+### 🛠️ Fixed
+- **Deprecated API updates** - Replaced deprecated `AnActionEvent.getRequiredData()` calls with modern `getData()` API
+- **Enhanced null safety** - Added explicit null checks for improved error handling and compatibility
+- **Future-proofing** - Eliminated "scheduled for removal" API warnings in IntelliJ Platform 252+
+
+### 🔧 Technical
+- Updated `CopyWithInlineIssues.kt` to use `getData()` with null safety
+- Updated `CopyFileWithInlineIssues.kt` to use `getData()` with null safety
+- Maintained identical functionality while improving API compatibility
+
 ## [1.0.5] - 2025-01-18
 
 ### 🔄 Changed
