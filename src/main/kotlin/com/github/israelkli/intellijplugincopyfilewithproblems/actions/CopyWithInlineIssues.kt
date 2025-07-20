@@ -3,7 +3,7 @@ package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 
-class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
+class CopyWithInlineIssues : BaseFileAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val editor = e.getData(CommonDataKeys.EDITOR) ?: return
@@ -42,5 +42,6 @@ class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
                        (editor.selectionModel.hasSelection())
         
         e.presentation.isEnabledAndVisible = isEnabled
+        e.presentation.text = "Copy with inline issues"
     }
 }

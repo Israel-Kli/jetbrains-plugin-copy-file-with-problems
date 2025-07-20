@@ -5,7 +5,7 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.PsiManager
 
-class CopyFileWithInlineIssues : BaseFileAction("Copy file with inline issues") {
+class CopyFileWithInlineIssues : BaseFileAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
         val project = e.getData(CommonDataKeys.PROJECT) ?: return
@@ -28,5 +28,6 @@ class CopyFileWithInlineIssues : BaseFileAction("Copy file with inline issues") 
                        (!virtualFile.isDirectory)
         
         e.presentation.isEnabledAndVisible = isEnabled
+        e.presentation.text = "Copy file with inline issues"
     }
 }

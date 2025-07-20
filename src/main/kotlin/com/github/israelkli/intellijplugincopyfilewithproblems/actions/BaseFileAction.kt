@@ -8,7 +8,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiFile
 import java.awt.datatransfer.StringSelection
 
-abstract class BaseFileAction(text: String) : AnAction(text) {
+abstract class BaseFileAction : AnAction() {
     
     protected val problemDetectionService = ProblemDetectionService()
     
