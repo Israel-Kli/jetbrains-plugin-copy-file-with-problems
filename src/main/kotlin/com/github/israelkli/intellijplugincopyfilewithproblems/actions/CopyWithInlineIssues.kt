@@ -6,7 +6,6 @@ import com.intellij.openapi.actionSystem.CommonDataKeys
 class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
 
     override fun actionPerformed(e: AnActionEvent) {
-        val project = e.getData(CommonDataKeys.PROJECT) ?: return
         val editor = e.getData(CommonDataKeys.EDITOR) ?: return
         val psiFile = e.getData(CommonDataKeys.PSI_FILE) ?: return
         
@@ -27,7 +26,7 @@ class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
             document,
             startLine,
             endLine
-        ) { fileName -> "$fileName" }
+        ) { fileName -> fileName }
         
         copyToClipboard(result)
     }

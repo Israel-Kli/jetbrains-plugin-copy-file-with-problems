@@ -65,6 +65,25 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
         return "$prefix$severityPrefix: $message$suffix"
     }
     
+    private fun appendIssueComments(
+        builder: StringBuilder,
+        psiFile: PsiFile,
+        issues: List<ProblemDetectionService.IssueInfo>
+    ) {
+        for (issue in issues) {
+            builder.appendLine()
+            val severityPrefix = when (issue.severity) {
+                "ERROR" -> "ERROR"
+                "WARNING" -> "WARNING"
+                "WEAK_WARNING" -> "WEAK_WARNING"
+                "INFO" -> "INFO"
+                "INSPECTION" -> "INSPECTION"
+                else -> issue.severity
+            }
+            builder.append(formatComment(psiFile, severityPrefix, issue.message))
+        }
+    }
+    
     protected fun buildContentWithProblems(
         psiFile: PsiFile,
         document: com.intellij.openapi.editor.Document,
@@ -88,18 +107,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 append(lineText)
                 
                 val problems = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
-                for (problem in problems) {
-                    appendLine()
-                    val severityPrefix = when (problem.severity) {
-                        "ERROR" -> "ERROR"
-                        "WARNING" -> "WARNING"
-                        "WEAK_WARNING" -> "WEAK_WARNING"
-                        "INFO" -> "INFO"
-                        "INSPECTION" -> "INSPECTION"
-                        else -> problem.severity
-                    }
-                    append(formatComment(psiFile, severityPrefix, problem.message))
-                }
+                appendIssueComments(this, psiFile, problems)
                 appendLine()
             }
         }
@@ -131,18 +139,7 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 val lineStartOffset = document.getLineStartOffset(index)
                 val lineEndOffset = document.getLineEndOffset(index)
                 val issues = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
-                for (issue in issues) {
-                    appendLine()
-                    val severityPrefix = when (issue.severity) {
-                        "ERROR" -> "ERROR"
-                        "WARNING" -> "WARNING"
-                        "WEAK_WARNING" -> "WEAK_WARNING"
-                        "INFO" -> "INFO"
-                        "INSPECTION" -> "INSPECTION"
-                        else -> issue.severity
-                    }
-                    append(formatComment(psiFile, severityPrefix, issue.message))
-                }
+                appendIssueComments(this, psiFile, issues)
                 appendLine()
             }
         }

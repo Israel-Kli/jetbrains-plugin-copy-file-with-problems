@@ -1,6 +1,5 @@
 package com.github.israelkli.intellijplugincopyfilewithproblems.services
 
-import com.github.israelkli.intellijplugincopyfilewithproblems.services.ProblemDetectionService
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
 class ProblemDetectionServiceTest : BasePlatformTestCase() {
@@ -13,17 +12,17 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
     }
 
     fun testProblemInfoDataClass() {
-        val problemInfo = ProblemDetectionService.ProblemInfo(
+        val issueInfo = ProblemDetectionService.IssueInfo(
             severity = "ERROR",
             message = "Test error message",
             startOffset = 0,
-            endOffset = 10
+            endOffset = 10,
         )
         
-        assertEquals("ERROR", problemInfo.severity)
-        assertEquals("Test error message", problemInfo.message)
-        assertEquals(0, problemInfo.startOffset)
-        assertEquals(10, problemInfo.endOffset)
+        assertEquals("ERROR", issueInfo.severity)
+        assertEquals("Test error message", issueInfo.message)
+        assertEquals(0, issueInfo.startOffset)
+        assertEquals(10, issueInfo.endOffset)
     }
 
     fun testFindIssuesWithValidJavaCode() {
@@ -40,7 +39,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         
         // Valid code should have no or minimal issues
         assertNotNull("Issues should not be null", issues)
-        assertTrue("Issues should be a list", issues is List)
     }
 
     fun testFindIssuesWithInvalidJavaCode() {
@@ -58,7 +56,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         val issues = service.findProblems(psiFile, 0, invalidJavaCode.length)
         
         assertNotNull("Issues should not be null", issues)
-        assertTrue("Issues should be detected", issues is List)
     }
 
     fun testFindIssuesWithEmptyRange() {
@@ -67,7 +64,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         
         val issues = service.findProblems(psiFile, 0, 0)
         assertNotNull("Issues should not be null", issues)
-        assertTrue("Issues list should be initialized", issues is List)
     }
 
     fun testFindIssuesWithLargeRange() {
@@ -91,7 +87,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         val issues = service.findProblems(psiFile, 0, javaCode.length)
         
         assertNotNull("Issues should not be null", issues)
-        assertTrue("Issues should be found in large file", issues is List)
     }
 
     fun testFindIssuesWithSyntaxErrors() {
@@ -111,7 +106,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         
         assertNotNull("Issues should not be null", issues)
         // Should detect the syntax error
-        assertTrue("Should detect issues in invalid syntax", issues is List)
     }
 
     fun testFindIssuesWithJavaScript() {
@@ -162,7 +156,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         val issues = service.findProblems(psiFile, 0, jsonCode.length)
         
         assertNotNull("JSON issues should not be null", issues)
-        assertTrue("JSON-like issues should be detected", issues is List)
     }
 
     fun testNullSafetyWithEmptyFile() {
@@ -229,7 +222,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         val issues = service.findProblems(psiFile, 0, javaCode.length)
         
         assertNotNull("Issues should not be null", issues)
-        assertTrue("Java issues should be detected", issues is List)
     }
 
     fun testXMLSpecificIssueDetection() {
@@ -245,7 +237,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         val issues = service.findProblems(psiFile, 0, xmlCode.length)
         
         assertNotNull("Issues should not be null", issues)
-        assertTrue("XML issues should be detected", issues is List)
     }
 
     fun testPartialFileAnalysis() {
@@ -283,7 +274,6 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
         assertNotNull("Second call should not be null", issues2)
         
         // Both calls should succeed independently
-        assertTrue("Both calls should return lists", issues1 is List && issues2 is List)
     }
 
     fun testDifferentLanguagePatterns() {
@@ -297,7 +287,7 @@ class ProblemDetectionServiceTest : BasePlatformTestCase() {
             "test.php" to "<?php function test() {} ?>",
             "test.cpp" to "int main() { return 0; }",
             "test.go" to "package main; func main() {}",
-            "test.rs" to "fn main() {}"
+            "test.rs" to "fn main() {}",
         )
         
         languages.forEach { (filename, code) ->

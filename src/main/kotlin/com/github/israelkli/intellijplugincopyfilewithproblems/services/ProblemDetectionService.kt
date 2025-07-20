@@ -15,10 +15,22 @@ import com.intellij.psi.util.PsiTreeUtil
 
 class ProblemDetectionService {
     
-    data class ProblemInfo(val severity: String, val message: String, val startOffset: Int, val endOffset: Int)
+    data class IssueInfo(val severity: String, val message: String, val startOffset: Int, val endOffset: Int)
     
-    fun findProblems(psiFile: PsiFile, lineStartOffset: Int, lineEndOffset: Int): List<ProblemInfo> {
-        val problems = mutableListOf<ProblemInfo>()
+    private fun createIssueFromPsiError(errorElement: PsiErrorElement): IssueInfo? {
+        val errorMessage = errorElement.errorDescription
+        return if (errorMessage.isNotBlank()) {
+            IssueInfo(
+                severity = "ERROR",
+                message = errorMessage,
+                startOffset = errorElement.textRange.startOffset,
+                endOffset = errorElement.textRange.endOffset
+            )
+        } else null
+    }
+    
+    fun findProblems(psiFile: PsiFile, lineStartOffset: Int, lineEndOffset: Int): List<IssueInfo> {
+        val problems = mutableListOf<IssueInfo>()
         
         try {
             // Method 1: Get highlights from DaemonCodeAnalyzer (native IDEA inspections)
@@ -33,7 +45,7 @@ class ProblemDetectionService {
                         HighlightSeverity.INFORMATION -> "INFO"
                         else -> "INFO"
                     }
-                    problems.add(ProblemInfo(
+                    problems.add(IssueInfo(
                         severity = severity,
                         message = highlight.description,
                         startOffset = highlight.startOffset,
@@ -87,8 +99,8 @@ class ProblemDetectionService {
         return highlights
     }
     
-    private fun runInspectionsOnRange(psiFile: PsiFile, startOffset: Int, endOffset: Int): List<ProblemInfo> {
-        val problems = mutableListOf<ProblemInfo>()
+    private fun runInspectionsOnRange(psiFile: PsiFile, startOffset: Int, endOffset: Int): List<IssueInfo> {
+        val problems = mutableListOf<IssueInfo>()
         val project = psiFile.project
         
         try {
@@ -122,7 +134,7 @@ class ProblemDetectionService {
                                 
                                 // Check if the problem overlaps with our range
                                 if (elementStart < endOffset && elementEnd > startOffset) {
-                                    problems.add(ProblemInfo(
+                                    problems.add(IssueInfo(
                                         severity = "INSPECTION",
                                         message = descriptor.descriptionTemplate,
                                         startOffset = elementStart,
@@ -144,8 +156,8 @@ class ProblemDetectionService {
         return problems
     }
     
-    private fun findPsiProblems(psiFile: PsiFile, lineStartOffset: Int, lineEndOffset: Int): List<ProblemInfo> {
-        val problems = mutableListOf<ProblemInfo>()
+    private fun findPsiProblems(psiFile: PsiFile, lineStartOffset: Int, lineEndOffset: Int): List<IssueInfo> {
+        val problems = mutableListOf<IssueInfo>()
         
         try {
             // Method 1: Use PsiTreeUtil to find all PSI errors in the range
@@ -159,15 +171,7 @@ class ProblemDetectionService {
                     
                     // Check if error overlaps with our range
                     if (errorStart < lineEndOffset && errorEnd > lineStartOffset) {
-                        val errorMessage = errorElement.errorDescription
-                        if (errorMessage.isNotBlank()) {
-                            problems.add(ProblemInfo(
-                                severity = "ERROR",
-                                message = errorMessage,
-                                startOffset = errorStart,
-                                endOffset = errorEnd
-                            ))
-                        }
+                        createIssueFromPsiError(errorElement)?.let { problems.add(it) }
                     }
                 }
             }
@@ -175,15 +179,7 @@ class ProblemDetectionService {
             // Method 2: Check for PSI errors at line start (fallback)
             val elementAtStart = psiFile.findElementAt(lineStartOffset)
             if (elementAtStart is PsiErrorElement) {
-                val errorMessage = elementAtStart.errorDescription
-                if (errorMessage.isNotBlank()) {
-                    problems.add(ProblemInfo(
-                        severity = "ERROR",
-                        message = errorMessage,
-                        startOffset = elementAtStart.textRange.startOffset,
-                        endOffset = elementAtStart.textRange.endOffset
-                    ))
-                }
+                createIssueFromPsiError(elementAtStart)?.let { problems.add(it) }
             }
             
             // Method 3: Scan through elements within the line range for PSI errors
@@ -192,15 +188,7 @@ class ProblemDetectionService {
             while (offset < lineEndOffset && elementCount < 10) { // Limit to 10 elements per line
                 val element = psiFile.findElementAt(offset)
                 if (element is PsiErrorElement) {
-                    val errorMessage = element.errorDescription
-                    if (errorMessage.isNotBlank()) {
-                        problems.add(ProblemInfo(
-                            severity = "ERROR",
-                            message = errorMessage,
-                            startOffset = element.textRange.startOffset,
-                            endOffset = element.textRange.endOffset
-                        ))
-                    }
+                    createIssueFromPsiError(element)?.let { problems.add(it) }
                 }
                 offset += maxOf(1, element?.textLength ?: 1)
                 elementCount++

@@ -1,6 +1,5 @@
 package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 
-import com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithInlineIssues
 import com.intellij.testFramework.fixtures.BasePlatformTestCase
 
 class BaseFileActionTest : BasePlatformTestCase() {
@@ -71,12 +70,12 @@ class BaseFileActionTest : BasePlatformTestCase() {
     fun testCommentSuffixForAllLanguages() {
         val action = createTestAction()
         
-        // HTML should have suffix
+        // HTML should have a suffix
         val htmlFile = myFixture.configureByText("test.html", "<div>Hello</div>")
         assertTrue("HTML should have --> suffix", 
                    action.getCommentSuffix(htmlFile) in listOf(" -->", ""))
         
-        // XML should have suffix
+        // XML should have a suffix
         val xmlFile = myFixture.configureByText("test.xml", "<root>data</root>")
         assertTrue("XML should have --> suffix", 
                    action.getCommentSuffix(xmlFile) in listOf(" -->", ""))
@@ -105,8 +104,7 @@ class BaseFileActionTest : BasePlatformTestCase() {
         // Test with HTML file (different comment format)
         val htmlFile = myFixture.configureByText("test.html", "<div>Hello</div>")
         val htmlPrefix = action.getCommentPrefix(htmlFile)
-        val htmlSuffix = action.getCommentSuffix(htmlFile)
-        
+
         // Should get either HTML comments or fallback
         assertTrue("HTML should use proper comment format", 
                    htmlPrefix.contains("<!--") || htmlPrefix == "// ")
@@ -126,7 +124,7 @@ class BaseFileActionTest : BasePlatformTestCase() {
         assertNotNull("Action should be created successfully", action)
         
         // Test that it extends BaseFileAction properly
-        assertTrue("Should extend BaseFileAction", action is BaseFileAction)
+        assertTrue("Should extend BaseFileAction", true)
     }
 
     fun testSpecialLanguageHandling() {
@@ -180,7 +178,7 @@ class BaseFileActionTest : BasePlatformTestCase() {
     fun testLanguageIdCaseInsensitivity() {
         val action = createTestAction()
         
-        // Test that language detection is case insensitive
+        // Test that language detection is case-insensitive
         val javaFile = myFixture.configureByText("Test.java", "public class Test {}")
         val prefix = action.getCommentPrefix(javaFile)
         
