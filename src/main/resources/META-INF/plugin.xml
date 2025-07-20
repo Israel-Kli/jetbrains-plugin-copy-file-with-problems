@@ -2,7 +2,7 @@
 <idea-plugin>
     <id>com.github.israelkli.intellijplugincopyfilewithproblems</id>
     <name>Copy with inline issues</name>
-    <version>1.0.5</version>
+    <version>1.0.6</version>
     <vendor url="https://github.com/Israel-Kli">israel-kli</vendor>
 
     <description><![CDATA[
@@ -57,6 +57,14 @@
     ]]></description>
 
     <change-notes><![CDATA[
+    <h3>🛠️ Version 1.0.6 - API Modernization</h3>
+    <ul>
+        <li><strong>Deprecated API fixes</strong> - Replaced deprecated AnActionEvent.getRequiredData() with modern getData() API</li>
+        <li><strong>Enhanced null safety</strong> - Added explicit null checks for improved error handling and compatibility</li>
+        <li><strong>Future-proofing</strong> - Eliminated "scheduled for removal" API warnings in IntelliJ Platform 252+</li>
+        <li><strong>Maintained functionality</strong> - All features work identically with improved API compatibility</li>
+    </ul>
+    
     <h3>🔄 Version 1.0.5 - Complete Rebranding</h3>
     <ul>
         <li><strong>Complete name consistency</strong> - Updated all references from "Copy file with inline issues" to "Copy with inline issues"</li>
@@ -82,7 +90,7 @@
 
     <actions>
         <action id="CopyWithProblems"
-                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithProblemsAction"
+                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyWithInlineIssues"
                 text="Copy with inline issues"
                 description="Copy selected code with associated errors and warnings as comments"
                 icon="/icons/copyWithProblems.svg">
@@ -90,7 +98,7 @@
         </action>
         
         <action id="CopyFileWithProblems"
-                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithProblemsAction"
+                class="com.github.israelkli.intellijplugincopyfilewithproblems.actions.CopyFileWithInlineIssues"
                 text="Copy file with inline issues"
                 description="Copy entire file content with associated errors and warnings as comments"
                 icon="/icons/copyWithProblems.svg">

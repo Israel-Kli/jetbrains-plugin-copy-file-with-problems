@@ -1,7 +1,6 @@
 package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 
 import com.github.israelkli.intellijplugincopyfilewithproblems.services.ProblemDetectionService
-import com.intellij.lang.Language
 import com.intellij.openapi.actionSystem.ActionUpdateThread
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.ide.CopyPasteManager
@@ -9,7 +8,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiFile
 import java.awt.datatransfer.StringSelection
 
-abstract class BaseFileAction(text: String) : AnAction(text) {
+abstract class BaseFileAction : AnAction() {
     
     protected val problemDetectionService = ProblemDetectionService()
     
@@ -66,6 +65,25 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
         return "$prefix$severityPrefix: $message$suffix"
     }
     
+    private fun appendIssueComments(
+        builder: StringBuilder,
+        psiFile: PsiFile,
+        issues: List<ProblemDetectionService.IssueInfo>
+    ) {
+        for (issue in issues) {
+            builder.appendLine()
+            val severityPrefix = when (issue.severity) {
+                "ERROR" -> "ERROR"
+                "WARNING" -> "WARNING"
+                "WEAK_WARNING" -> "WEAK_WARNING"
+                "INFO" -> "INFO"
+                "INSPECTION" -> "INSPECTION"
+                else -> issue.severity
+            }
+            builder.append(formatComment(psiFile, severityPrefix, issue.message))
+        }
+    }
+    
     protected fun buildContentWithProblems(
         psiFile: PsiFile,
         document: com.intellij.openapi.editor.Document,
@@ -89,24 +107,13 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 append(lineText)
                 
                 val problems = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
-                for (problem in problems) {
-                    appendLine()
-                    val severityPrefix = when (problem.severity) {
-                        "ERROR" -> "ERROR"
-                        "WARNING" -> "WARNING"
-                        "WEAK_WARNING" -> "WEAK_WARNING"
-                        "INFO" -> "INFO"
-                        "INSPECTION" -> "INSPECTION"
-                        else -> problem.severity
-                    }
-                    append(formatComment(psiFile, severityPrefix, problem.message))
-                }
+                appendIssueComments(this, psiFile, problems)
                 appendLine()
             }
         }
     }
     
-    protected fun buildFileContentWithProblems(
+    protected fun buildFileContentWithInlineIssues(
         psiFile: PsiFile,
         document: com.intellij.openapi.editor.Document,
         project: com.intellij.openapi.project.Project,
@@ -131,19 +138,8 @@ abstract class BaseFileAction(text: String) : AnAction(text) {
                 
                 val lineStartOffset = document.getLineStartOffset(index)
                 val lineEndOffset = document.getLineEndOffset(index)
-                val problems = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
-                for (problem in problems) {
-                    appendLine()
-                    val severityPrefix = when (problem.severity) {
-                        "ERROR" -> "ERROR"
-                        "WARNING" -> "WARNING"
-                        "WEAK_WARNING" -> "WEAK_WARNING"
-                        "INFO" -> "INFO"
-                        "INSPECTION" -> "INSPECTION"
-                        else -> problem.severity
-                    }
-                    append(formatComment(psiFile, severityPrefix, problem.message))
-                }
+                val issues = problemDetectionService.findProblems(psiFile, lineStartOffset, lineEndOffset)
+                appendIssueComments(this, psiFile, issues)
                 appendLine()
             }
         }

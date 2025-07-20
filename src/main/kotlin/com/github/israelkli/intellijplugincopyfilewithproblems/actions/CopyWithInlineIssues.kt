@@ -3,11 +3,10 @@ package com.github.israelkli.intellijplugincopyfilewithproblems.actions
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.actionSystem.CommonDataKeys
 
-class CopyWithProblemsAction : BaseFileAction("Copy with inline issues") {
+class CopyWithInlineIssues : BaseFileAction() {
 
     override fun actionPerformed(e: AnActionEvent) {
-        val project = e.getRequiredData(CommonDataKeys.PROJECT)
-        val editor = e.getRequiredData(CommonDataKeys.EDITOR)
+        val editor = e.getData(CommonDataKeys.EDITOR) ?: return
         val psiFile = e.getData(CommonDataKeys.PSI_FILE) ?: return
         
         val selectionModel = editor.selectionModel
@@ -26,8 +25,8 @@ class CopyWithProblemsAction : BaseFileAction("Copy with inline issues") {
             psiFile,
             document,
             startLine,
-            endLine
-        ) { fileName -> "$fileName" }
+            endLine,
+        ) { fileName -> fileName }
         
         copyToClipboard(result)
     }
@@ -37,11 +36,12 @@ class CopyWithProblemsAction : BaseFileAction("Copy with inline issues") {
         val editor = e.getData(CommonDataKeys.EDITOR)
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
         
-        val isEnabled = project != null && 
-                       editor != null && 
-                       psiFile != null && 
-                       editor.selectionModel.hasSelection()
+        val isEnabled = (project != null) && 
+                       (editor != null) && 
+                       (psiFile != null) && 
+                       (editor.selectionModel.hasSelection())
         
         e.presentation.isEnabledAndVisible = isEnabled
+        e.presentation.text = "Copy with Inline Issues"
     }
 }
