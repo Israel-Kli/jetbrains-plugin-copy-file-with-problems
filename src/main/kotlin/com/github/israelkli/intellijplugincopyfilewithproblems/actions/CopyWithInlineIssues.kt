@@ -25,7 +25,7 @@ class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
             psiFile,
             document,
             startLine,
-            endLine
+            endLine,
         ) { fileName -> fileName }
         
         copyToClipboard(result)
@@ -36,10 +36,10 @@ class CopyWithInlineIssues : BaseFileAction("Copy with inline issues") {
         val editor = e.getData(CommonDataKeys.EDITOR)
         val psiFile = e.getData(CommonDataKeys.PSI_FILE)
         
-        val isEnabled = project != null && 
-                       editor != null && 
-                       psiFile != null && 
-                       editor.selectionModel.hasSelection()
+        val isEnabled = (project != null) && 
+                       (editor != null) && 
+                       (psiFile != null) && 
+                       (editor.selectionModel.hasSelection())
         
         e.presentation.isEnabledAndVisible = isEnabled
     }

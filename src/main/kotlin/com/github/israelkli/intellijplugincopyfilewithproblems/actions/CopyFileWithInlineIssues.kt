@@ -23,9 +23,9 @@ class CopyFileWithInlineIssues : BaseFileAction("Copy file with inline issues") 
         val virtualFile = e.getData(CommonDataKeys.VIRTUAL_FILE)
         val project = e.getData(CommonDataKeys.PROJECT)
         
-        val isEnabled = virtualFile != null && 
-                       project != null && 
-                       !virtualFile.isDirectory
+        val isEnabled = (virtualFile != null) && 
+                       (project != null) && 
+                       (!virtualFile.isDirectory)
         
         e.presentation.isEnabledAndVisible = isEnabled
     }
