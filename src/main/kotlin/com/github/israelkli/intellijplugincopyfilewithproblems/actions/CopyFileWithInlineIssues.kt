@@ -28,6 +28,6 @@ class CopyFileWithInlineIssues : BaseFileAction() {
                        (!virtualFile.isDirectory)
         
         e.presentation.isEnabledAndVisible = isEnabled
-        e.presentation.text = "Copy file with inline issues"
+        e.presentation.text = "Copy File with Inline Issues"
     }
 }

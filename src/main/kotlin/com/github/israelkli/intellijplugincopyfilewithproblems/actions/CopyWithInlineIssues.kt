@@ -42,6 +42,6 @@ class CopyWithInlineIssues : BaseFileAction() {
                        (editor.selectionModel.hasSelection())
         
         e.presentation.isEnabledAndVisible = isEnabled
-        e.presentation.text = "Copy with inline issues"
+        e.presentation.text = "Copy with Inline Issues"
     }
 }
